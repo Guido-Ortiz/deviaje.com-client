@@ -16,15 +16,15 @@ const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
-        <Auth0Provider
-          domain={domain}
-          clientId={clientId}
-          redirectUri={window.location.origin}
-        >
-          <App />
-        </Auth0Provider>
-      </Provider>
+      {/*<Provider store = {store}>*/}
+      <Auth0Provider
+        domain={domain}
+        clientId={clientId}
+        redirectUri={window.location.origin}
+      >
+        <App />
+      </Auth0Provider>
+      {/* </Provider> */}
     </BrowserRouter>
   </React.StrictMode>,
 
