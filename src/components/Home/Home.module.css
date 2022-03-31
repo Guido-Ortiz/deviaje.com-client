@@ -1,0 +1,44 @@
+.home {
+  border: solid #000 1px;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 200px;
+  margin: 2rem;
+  border-radius: 5px;
+  background-color: #e5e5e5;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.container_departure{
+  display: flex;
+  flex-direction: column;  
+  padding: 10px;
+}
+
+.flex{
+  display: flex;
+}
+
+.price{
+  display: flex;
+  flex-direction: column;
+  border-left: #000 solid 1px;
+  color: green;
+  width: 20%;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
+.padding_left{
+  padding-left: 0.4rem;
+}
+
+
