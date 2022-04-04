@@ -4,12 +4,11 @@ import LuggageIcon from "@mui/icons-material/Luggage";
 import ConnectingAirportsOutlinedIcon from "@mui/icons-material/ConnectingAirportsOutlined";
 import { IoIosAirplane } from "react-icons/io";
 import SearchBar from "../SearchBar/SearchBar";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Filter from "../Filter/Filter";
 
 export default function Home() {
-  const dispatch = useDispatch();
-  const flights = useSelector((state) => state.allFlights);
+  const flights = useSelector((state) => state.flights);
 
   const [input, setInput] = useState({
     fly_from: "",
@@ -32,7 +31,7 @@ export default function Home() {
                 <div className={styles.container}>
                   <div className={styles.flex}>
                     <ConnectingAirportsOutlinedIcon color="success" />
-                    <h2>DeViaje.com</h2>
+                    <h2>{f.fare_category}</h2>
                   </div>
                   <div className={styles.container_departure}>
                     <div className={styles.flex}>

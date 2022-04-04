@@ -41,6 +41,14 @@ function SearchBar() {
         name="fly_to"
         className={s.input}
       />
+      <select
+        name="travelclass"
+        className={s.input}
+        onChange={(e) => handleInputChange(e)}
+      >
+        <option defaultValue="W">Economy</option>
+        <option value="W">Bussines</option>
+      </select>
       <div className={s.dates}>
         <input
           className={s.date}
