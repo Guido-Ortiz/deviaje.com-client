@@ -4,7 +4,7 @@ import s from "./SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getFlightsInfo } from "../../Redux/actions/actions";
 
-function SearchBar() {
+function SearchBar( { setShowLoading } ) {
   const dispatch = useDispatch();
   const flights = useSelector((state) => state.allFlights);
 
@@ -22,13 +22,15 @@ function SearchBar() {
   function handleClick(e) {
     e.preventDefault();
     dispatch(getFlightsInfo(input));
+    setShowLoading( true )
   }
+  
   return (
     <div className={s.display}>
       <div className={s.flights}>Flights</div>
       <input
         value={input.fly_from}
-        placeholder="origen"
+        placeholder="Enter departure city"
         onChange={handleInputChange}
         name="fly_from"
         className={s.input}
@@ -36,7 +38,7 @@ function SearchBar() {
 
       <input
         value={input.fly_to}
-        placeholder="destino"
+        placeholder="Enter destination city"
         onChange={handleInputChange}
         name="fly_to"
         className={s.input}
@@ -56,7 +58,7 @@ function SearchBar() {
           type="date"
           onChange={handleInputChange}
           name="dateFrom"
-          placeholder="Fecha salida"
+          placeholder="dd-mm-yyyy"
         />
         <input
           className={s.date}
@@ -64,7 +66,7 @@ function SearchBar() {
           value={input.dateTo}
           onChange={handleInputChange}
           name="dateTo"
-          placeholder="Fecha llegada"
+          placeholder="dd-mm-yyyy"
         />
       </div>
       <button className={s.btn} type="submit" onClick={handleClick}>

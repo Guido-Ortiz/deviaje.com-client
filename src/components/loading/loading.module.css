@@ -1,0 +1,13 @@
+.container{
+    margin-top: 7rem; 
+    display: flex; 
+    flex-Direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.subTitle {
+    font-weight: bold;
+    color: #513F56;
+    font-size: 1.5rem;
+    margin-top: -1.5rem;
+}
