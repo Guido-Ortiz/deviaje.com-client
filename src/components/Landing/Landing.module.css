@@ -21,10 +21,13 @@ body{
     padding-top: 40px;
     color: #0a66c2;
     letter-spacing: 1.5px;
+    /* display:flex;
+    justify-content: center; */
 }
 
 .url{
     font-style: italic;
+    font-size:44px;
     color: white;
     font-weight: 700;
     background-color: rgba(24, 24, 24, 0.54);
@@ -34,6 +37,7 @@ body{
 
 .btn{
     background-color: #0a66c2;
+    border-radius: 6px;
     color: white;
     height: 40px;
     width: 100px;
@@ -44,6 +48,10 @@ body{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.btn:hover{
+    background-color: #2979ff;
 }
 
 .flex{
@@ -68,10 +76,28 @@ body{
     height: 40px;
     margin-left: 10px;
     padding: 5px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
 }
 
 .date{
     height: 40px;
     margin-left: 10px;
     padding: 5px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+}
+
+.errors{
+    color: red;
+    margin-top: 5px;
+    margin-left: 5px;
+    padding-left: 5px;
+}
+
+.boxErrors{
+    display: flex;
+    flex-direction: column;
 }

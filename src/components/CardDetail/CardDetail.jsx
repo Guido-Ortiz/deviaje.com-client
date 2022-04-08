@@ -8,7 +8,7 @@ function CardDetail(props) {
     <>
       <div className={styles.cardDetail}>
         <div className={styles.outwardJourney}>
-          <span className={styles.baggageContainer}>Equipaje</span>
+          <span className={styles.baggageContainer}>{price}</span>
           <span className={styles.timeTable}>{local_departure}</span>
         </div>
         <div className={styles.returnTrip}>
