@@ -4,9 +4,8 @@ import img from './Img/woman.jpg'
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { topdestination } from '../../Redux/actions/actions';
-import Slider from 'infinite-react-carousel';
 import top from './assets/Istanbul-skyline.jpg'
-import top1 from './assets/medellin.jpg'
+import top1 from './assets/medellin.jpg'   
 import top2 from './assets/miami2.jpg'
 import top3 from './assets/new york.jpg'
 import top4 from './assets/frankfurt-2.jpg'
@@ -14,12 +13,14 @@ import top5 from './assets/las vegas.webp'
 import top6 from './assets/barcelona.jpg'
 import {NavLink} from 'react-router-dom'
 import { Loading } from '../loading/Loading';
+import Carousel from 'react-bootstrap/Carousel'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 export  function TopDestination(){
 
 
-//     const apiKey = 'AIzaSyDpDeQ4dvtyfQoxkE6xz1tc5Ll05eXfX3w'
-//    const reverse = `https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY`
+
     const [location, setLocation] = useState({
         loaded:false,
         coordinates:{lat:"", lng:""}
@@ -69,54 +70,73 @@ export  function TopDestination(){
               {
           showLoading && <div style={{marginBottom:'100%'}} ><Loading /></div> 
               }
+             
             <div className={s.container}>
                 <h2 className={s.title}>Top Destinations</h2>
-                <Slider autoplay={true} dots  className={s.slider}> 
-                
-    <div>
-     <NavLink to='/home'>
-         <input type='image' value='istanbul' className={s.slide} src={top} alt="istanbul" onClick={handleSearch}/>
-         <p className={s.slideText}>Istabul</p>
-     </NavLink>
-    </div>
-    <div>
-    <NavLink to='/home'>
-    <input type='image' value='medellin' className={s.slide} src={top1} alt="medellin" onClick={handleSearch}/>
-    <p className={s.slideText}>Medellin</p>
-    </NavLink>
-    </div>
-    <div>
-    <NavLink to='/home'>
-    <input type='image' value='miami' className={s.slide} src={top2} alt="miami" onClick={handleSearch}/>
-    <p className={s.slideText}>Miami</p>
-    </NavLink>
-    </div>
-    <div>
-    <NavLink to='/home'>
-    <input type='image' value='new york' className={s.slide} src={top3} alt="new york" onClick={handleSearch}/>
-    <p className={s.slideText}>New York</p>
-    </NavLink>
-    </div>
-    <div>
-    <NavLink to='/home'>
-    <input type='image' value='frankfurt' className={s.slide} src={top4} alt="frankfurt" onClick={handleSearch}/>
-    <p className={s.slideText}>FrankFurt</p>
-    </NavLink>
-    </div>
-    <div>
-    <NavLink to='/home'>
-    <input type='image' value='las vegas' className={s.slide} src={top5} alt="las vegas" onClick={handleSearch}/>
-    <p className={s.slideText}>Las Vegas</p>
-    </NavLink>
-    </div>
-    <div>
-    <NavLink to='/home'>
-    <input type='image' value='barcelona' className={s.slide} src={top6} alt="barcelona" onClick={handleSearch}/>
-    <p className={s.slideText}>Barcelona</p>
-    </NavLink>
-    </div>
-   
-  </Slider>
+         <Carousel>
+            <Carousel.Item>
+                <NavLink to='/home'>
+                    <input type='image' value='istabul'  className={s.slide} src={top} alt="Istabul" onClick={handleSearch}/>
+                </NavLink>
+                <Carousel.Caption>
+                <p>Istabul</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item>
+                <NavLink to='/home'>
+                    <input type='image' value='medellin'  className={s.slide} src={top1} alt="Medellin" onClick={handleSearch}/>
+                </NavLink>
+                <Carousel.Caption>
+                <p>Medellin</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item>
+                <NavLink to='/home'>
+                    <input type='image' value='miami'  className={s.slide} src={top2} alt="Miami" onClick={handleSearch}/>
+                </NavLink>
+                <Carousel.Caption>
+                <p>Miami</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item>
+                <NavLink to='/home'>
+                    <input type='image' value='new york'  className={s.slide} src={top3} alt="New York" onClick={handleSearch}/>
+                </NavLink>
+                <Carousel.Caption>
+                <p>New York</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item>
+                <NavLink to='/home'>
+                    <input type='image' value='frankFurt'  className={s.slide} src={top4} alt="FrankFurt" onClick={handleSearch}/>
+                </NavLink>
+                <Carousel.Caption>
+                <p>FrankFurt</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item>
+                <NavLink to='/home'>
+                    <input type='image' value='las vegas'  className={s.slide} src={top5} alt="Las Vegas" onClick={handleSearch}/>
+                </NavLink>
+                <Carousel.Caption>
+                <p>Las Vegas</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item>
+                <NavLink to='/home'>
+                    <input type='image' value='barcelona'  className={s.slide} src={top6} alt="Barcelona" onClick={handleSearch}/>
+                </NavLink>
+                <Carousel.Caption>
+                <p>Barcelona</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+        </Carousel>
             </div>
             <div className={s.container}>
                 <h2 className={s.title}>Offers you cannot wait</h2>
