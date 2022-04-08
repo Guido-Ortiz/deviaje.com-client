@@ -18,7 +18,6 @@
     "axios": "^0.26.1",
     "bootstrap": "^5.1.3",
     "dotenv": "^16.0.0",
-    "infinite-react-carousel": "^1.2.11",
     "material-auto-rotating-carousel": "^3.0.2",
     "moment": "^2.29.1",
     "next-router": "^1.3.6",
