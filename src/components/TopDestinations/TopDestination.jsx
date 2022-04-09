@@ -20,21 +20,43 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export  function TopDestination(){
 
 
-
+   
     const [location, setLocation] = useState({
         loaded:false,
         coordinates:{lat:"", lng:""}
     })
-    const [ showLoading, setShowLoading ] = useState( false )
-    console.log(location)
+    const [ showLoading, setShowLoading ] = useState(false)
+    let [ data, setData] = useState('') // origin
+  
 
+  
+
+   useEffect(() => {
+    if(!("geolocation" in navigator)){
+      onError({
+         code:0,
+         message:"Geolocation not supported"
+      })
+    }
+    navigator.geolocation.getCurrentPosition(onSuccess, onError)
+}, [])
+
+
+    useEffect(() => {
+        fetch(`https://tequila-api.kiwi.com/locations/radius?lat=${location.coordinates.lat}&lon=${location.coordinates.lng}&radius=200&locale=en-US&location_types=airport&limit=1&active_only=true`, {
+            headers: {apikey: '-bo7TXYPf_ZTWM3PbGt2Su4ZNpgWu6-K'}
+        })
+        .then(data => data.json())
+        .then(dat => setData(dat.locations.map(p => p.city.name)))
+    }, [location])
     
     const dispatch = useDispatch()
-    const handleSearch = (e) =>{
-      
-    dispatch(topdestination(e.target.value))
-    setShowLoading(true)
+
+    const handleSearch = (e) =>{  
+        setShowLoading(true)
+     dispatch(topdestination(e.target.value))
    }
+
  
    
    const onSuccess = location => {
@@ -55,15 +77,7 @@ export  function TopDestination(){
    }
 
 
-   useEffect(() => {
-       if(!("geolocation" in navigator)){
-         onError({
-            code:0,
-            message:"Geolocation not supported"
-         })
-       }
-       navigator.geolocation.getCurrentPosition(onSuccess, onError)
-   }, [])
+ 
 
     return(
         <div className={s.mainContainer}>
@@ -76,7 +90,7 @@ export  function TopDestination(){
          <Carousel>
             <Carousel.Item>
                 <NavLink to='/home'>
-                    <input type='image' value='istabul'  className={s.slide} src={top} alt="Istabul" onClick={handleSearch}/>
+                    <input type='image' value='istabul' name='istabul' className={s.slide} src={top} alt="Istabul" onClick={handleSearch}/>
                 </NavLink>
                 <Carousel.Caption>
                 <p>Istabul</p>
@@ -85,7 +99,7 @@ export  function TopDestination(){
 
             <Carousel.Item>
                 <NavLink to='/home'>
-                    <input type='image' value='medellin'  className={s.slide} src={top1} alt="Medellin" onClick={handleSearch}/>
+                    <input type='image' value='medellin' name='medellin'  className={s.slide} src={top1} alt="Medellin" onClick={handleSearch}/>
                 </NavLink>
                 <Carousel.Caption>
                 <p>Medellin</p>
@@ -94,7 +108,7 @@ export  function TopDestination(){
 
             <Carousel.Item>
                 <NavLink to='/home'>
-                    <input type='image' value='miami'  className={s.slide} src={top2} alt="Miami" onClick={handleSearch}/>
+                    <input type='image' value='miami'  name='miami'  className={s.slide} src={top2} alt="Miami" onClick={handleSearch}/>
                 </NavLink>
                 <Carousel.Caption>
                 <p>Miami</p>
@@ -103,7 +117,7 @@ export  function TopDestination(){
 
             <Carousel.Item>
                 <NavLink to='/home'>
-                    <input type='image' value='new york'  className={s.slide} src={top3} alt="New York" onClick={handleSearch}/>
+                    <input type='image' value='new york' name='new york' className={s.slide} src={top3} alt="New York" onClick={handleSearch}/>
                 </NavLink>
                 <Carousel.Caption>
                 <p>New York</p>
@@ -112,7 +126,7 @@ export  function TopDestination(){
 
             <Carousel.Item>
                 <NavLink to='/home'>
-                    <input type='image' value='frankFurt'  className={s.slide} src={top4} alt="FrankFurt" onClick={handleSearch}/>
+                    <input type='image' value='frankFurt' name='frankFurt'  className={s.slide} src={top4} alt="FrankFurt" onClick={handleSearch}/>
                 </NavLink>
                 <Carousel.Caption>
                 <p>FrankFurt</p>
@@ -121,7 +135,7 @@ export  function TopDestination(){
 
             <Carousel.Item>
                 <NavLink to='/home'>
-                    <input type='image' value='las vegas'  className={s.slide} src={top5} alt="Las Vegas" onClick={handleSearch}/>
+                    <input type='image' value='las vegas' name='las vegas'  className={s.slide} src={top5} alt="Las Vegas" onClick={handleSearch}/>
                 </NavLink>
                 <Carousel.Caption>
                 <p>Las Vegas</p>
@@ -130,7 +144,7 @@ export  function TopDestination(){
 
             <Carousel.Item>
                 <NavLink to='/home'>
-                    <input type='image' value='barcelona'  className={s.slide} src={top6} alt="Barcelona" onClick={handleSearch}/>
+                    <input type='image' value='barcelona'  name='barcelona'  className={s.slide} src={top6} alt="Barcelona" onClick={handleSearch}/>
                 </NavLink>
                 <Carousel.Caption>
                 <p>Barcelona</p>

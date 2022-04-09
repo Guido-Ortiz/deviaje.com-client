@@ -1,6 +1,6 @@
 import { GET_FLIGHTS_INFO, FLIGHTS_NO_FOUND, STOP_FILTER, DATE_FILTER, PRICE_FILTER, AVAILABILITY_FILTER, TOP_DESTINATION  } from "./constants";
 import { axiosWithOutToken } from '../../services/axios'
-
+ 
 
 export const getFlightsInfo = (payload) => {
 
@@ -28,7 +28,7 @@ export const getFlightsInfo = (payload) => {
 
 
 export const topdestination = (payload) => {
-
+  console.log('payload acion', payload)
   return async (dispatch) => {
    
     const d = new Date().toISOString()
@@ -38,7 +38,7 @@ export const topdestination = (payload) => {
 
     try {
         const response = await axiosWithOutToken(
-            `/getflights?fly_from=buenos%20aires&fly_to=${payload}&date_from=${modDate}&date_to=20/04/2022`
+            `/getflights?fly_from=buenos%20aires&fly_to=${payload}&date_from=${modDate}&date_to=29/04/2022`
         )
         return dispatch({
             type: GET_FLIGHTS_INFO,

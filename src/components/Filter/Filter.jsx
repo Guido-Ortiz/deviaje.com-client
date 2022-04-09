@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import s from './Filter.module.css';
 import { dateFilter, stopsFilter, priceFilter, availabilityFilter } from '../../Redux/actions/actions';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -14,14 +14,17 @@ import FormLabel from '@mui/material/FormLabel';
 
 function Filter( ) {
   
+    const flights = useSelector(state => state.allFlights)
     const [price, setPrice] = useState('500')
     const [availability, setAvailability] = useState('1')
   
     const dispatch = useDispatch()
 
     const handlecheck = (e) => {
-        if(e.target.checked){
+        if(e.target.checked && flights){
             dispatch(stopsFilter(e.target.value))
+        } else {
+            alert('no flights')
         }
     }
 
@@ -31,20 +34,20 @@ function Filter( ) {
     }
 
    useEffect(() => {
-       if(price){
+       if(flights){
         dispatch(priceFilter(price))
-       }
-   }, [dispatch, price])
+       } 
+   }, [dispatch, price, flights])
  
     let handleInputPrice = (e) => {
         setPrice(e.target.value);
       };
 
       useEffect(()=> {
-          if(availability){
+          if(flights){
               dispatch(availabilityFilter(availability))
           }
-      }, [dispatch, availability])
+      }, [dispatch, availability, flights])
 
       let handleInputavailability = (e) => {
         setAvailability(e.target.value);

@@ -22,10 +22,6 @@ export default function Home() {
   const modalErr = useSelector((state) => state.modalErr);
 
  
-  
-
- 
-  console.log(flights)
 
   const [ showDetails, setShowDetails ] = useState( false )
   const [ showLoading, setShowLoading ] = useState( false )
