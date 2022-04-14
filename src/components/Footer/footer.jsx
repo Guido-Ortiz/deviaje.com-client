@@ -17,15 +17,15 @@ export function Footer(){
          </div>
         <div className={s.containerText}>
         <div className={s.text}>
-            <h2>Report abuse</h2>
+            <h4>Report abuse</h4>
              <p>If you believe that the website is violating your rights, file a compliant by filling out this form</p>
         </div>
          <div className={s.text}>
-        <h2>How to contact our support</h2>
+        <h4>How to contact our support</h4>
          <p>To find out more about the platform features, contact us via email deviaje@gmail.com.ar</p>
         </div>
         <div className={s.text}>
-            <h2>Accounting docs</h2>
+            <h4>Accounting docs</h4>
             <p>To get the supporting documentation and proof of payment, send your request to deviajepuntocom12@gmail.com</p>
         </div>
         </div>

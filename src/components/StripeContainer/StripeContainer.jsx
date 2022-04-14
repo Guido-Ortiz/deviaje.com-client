@@ -1,7 +1,7 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
-import PaymentForm from '../PaymentForm/PaymentForm'
+import PaymentForm from '../PaymentForm/PaymentForm';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -14,14 +14,11 @@ function StripeContainer() {
     const flights = useSelector(state => state.allFlights)
     const {id} = useParams()
     const flight = flights?.filter(f => f.id === id)
-    const history = useHistory()
-
+    
+    window.scrollTo(0, 0)
     return (
         <Elements stripe={stripePromise}>
-            <PaymentForm
-                price={(flight[0].price * 1.8).toFixed()}
-                onSuccessfulCheckout={() => history.push("/success")}
-            />
+            <PaymentForm price={(flight[0].price * 1.8).toFixed()} />
         </Elements>
     );
 }

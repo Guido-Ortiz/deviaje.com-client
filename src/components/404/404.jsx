@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 
 export default  function NoMatch(){
 
-     const history = useHistory()
+     const history = useHistory() 
 
      const handle = () => {
         history.push('/')

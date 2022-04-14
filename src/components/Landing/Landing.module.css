@@ -21,8 +21,6 @@ body{
     padding-top: 40px;
     color: #0a66c2;
     letter-spacing: 1.5px;
-    /* display:flex;
-    justify-content: center; */
 }
 
 .url{
@@ -36,45 +34,57 @@ body{
 }
 
 .btn{
-    background-color: #0a66c2;
-    border-radius: 6px;
-    color: white;
     height: 40px;
     width: 100px;
     border: none;
-    letter-spacing: 1.5px;
-    margin-left: 10px;
+    letter-spacing: 1px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    border-radius: .8rem;
+    background-color: #1348a3;
+    color: #E5E7E9;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Roboto Mono', monospace;
+    cursor: pointer;
+    margin-right: 3.2rem;
+    margin-top: 45px;
+    padding:5px
+}
+
+.btn:active{
+    transform: scale(.99);
 }
 
 .btn:hover{
-    background-color: #2979ff;
+    background-color: #1f56b6;
 }
 
 .flex{
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 40px;
-    width: 850px;
-    height: 80px;
+    width: 1150px;
+    height: 180px;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    z-index: 10;
     border-left: 3px solid #0a66c2;
     margin-left: 40px;
-    background-color: rgba(24, 24, 24, 0.54);
+    /* background-color: rgba(121, 114, 114, 0.54); */
+    background-color: rgba(133, 161, 187, 0.54);
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding-top: 2rem;
 }
 
 .input{
     height: 40px;
     margin-left: 10px;
+    margin-top: 45px;
     padding: 5px;
     border-radius: 6px;
     border: none;
@@ -84,6 +94,7 @@ body{
 .date{
     height: 40px;
     margin-left: 10px;
+    margin-top:45px;
     padding: 5px;
     border-radius: 6px;
     border: none;
@@ -100,4 +111,45 @@ body{
 .boxErrors{
     display: flex;
     flex-direction: column;
+}
+
+.pass{
+    position: relative;
+    right: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    height: 40px;
+    border-radius: 6px;
+    padding: 4px;
+    margin-right: 20px;
+    margin-top: 45px;
+}
+
+.placeh{
+    color: gray;
+    letter-spacing: 1px;
+}
+
+.radio{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    outline: none;
+    border-radius: 6px;
+    border: none;
+    color: #0c0c0c;
+    font-weight: 900;
+    font-size:1rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-top: -3.5rem;
+    margin-left: 2rem;
+    background: white;
+    padding-right: 12.5rem;
+    margin-bottom: 40px;
 }

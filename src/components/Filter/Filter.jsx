@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import s from './Filter.module.css';
 import { dateFilter, stopsFilter, priceFilter, availabilityFilter } from '../../Redux/actions/actions';
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch, useSelector } from 'react-redux'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -9,23 +9,21 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
 
-
-
-
 function Filter( ) {
   
-    const flights = useSelector(state => state.allFlights)
-    const [price, setPrice] = useState('500')
-    const [availability, setAvailability] = useState('1')
+    // const flights = useSelector(state => state.allFlights)
+    const [price, setPrice] = useState('')
+    const [availability, setAvailability] = useState('')
   
     const dispatch = useDispatch()
-
+    const toFrom = useSelector(state => state.dataInputs.toFrom)
+    
     const handlecheck = (e) => {
-        if(e.target.checked && flights){
-            dispatch(stopsFilter(e.target.value))
-        } else {
-            alert('no flights')
-        }
+        if(e.target.checked){
+            const check = {toFrom, value:e.target.value}
+            //dispatch(stopsFilter(e.target.value))
+            dispatch(stopsFilter( check ))
+        } 
     }
 
     const handleDate = (e) => {
@@ -34,20 +32,22 @@ function Filter( ) {
     }
 
    useEffect(() => {
-       if(flights){
-        dispatch(priceFilter(price))
-       } 
-   }, [dispatch, price, flights])
+       if(price){
+           dispatch(priceFilter(price))
+       }
+   }, [dispatch, price])
+     
+
  
     let handleInputPrice = (e) => {
         setPrice(e.target.value);
       };
 
       useEffect(()=> {
-          if(flights){
+          if(availability){
               dispatch(availabilityFilter(availability))
           }
-      }, [dispatch, availability, flights])
+      }, [dispatch, availability])
 
       let handleInputavailability = (e) => {
         setAvailability(e.target.value);

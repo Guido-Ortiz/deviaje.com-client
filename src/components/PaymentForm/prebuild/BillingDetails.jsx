@@ -2,7 +2,7 @@ import FormField from "./FormField";
 
 const BillingDetails = () => {
   return (
-    <>
+    <div>
       <FormField
         name="name"
         label="Name"
@@ -45,7 +45,7 @@ const BillingDetails = () => {
         placeholder="94103"
         required
       />
-    </>
+    </div>
   );
 };
 

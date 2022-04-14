@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import styled from "@emotion/styled";
 import axios from "axios";
@@ -7,6 +7,24 @@ import BillingDetails from "./prebuild/BillingDetails";
 import SubmitButton from "./prebuild/SubmitButton";
 import CheckoutError from "./prebuild/CheckoutError";
 import { useHistory } from "react-router-dom";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import s from './PaymentForm.module.css';
+import visa from './assets/visa.png';
+import master from './assets/master.jpg';
+import american from './assets/american.png';
+import discover from './assets/discover.png';
+import diners from './assets/diners.png';
+import jcb from './assets/jcb.png';
+import union from './assets/union.png';
+import { axiosWithOutToken } from '../../services/axios'
+import swal from 'sweetalert';
+import { useDispatch } from "react-redux";
+import { getPassengers } from "../../Redux/actions/actions";
+import StepperHorizontal from '../Stepper/StepperHorizontal';
 
 const CardElementContainer = styled.div`
   height: 40px;
@@ -18,10 +36,11 @@ const CardElementContainer = styled.div`
   }
 `;
 
-const PaymentForm = ({ price, onSuccessfulCheckout }) => {
+const PaymentForm = ({ price }) => {
   const history = useHistory()
   const [processing, setProcessing] = useState(false);
   const [checkoutError, setCheckoutError] = useState();
+  const dispatch = useDispatch();
 
   const stripe = useStripe();
   const elements = useElements();
@@ -43,7 +62,8 @@ const PaymentForm = ({ price, onSuccessfulCheckout }) => {
         postal_code: ev.target.zip.value
       }
     };
-
+    console.log(billingDetails)
+    await axiosWithOutToken('/paymentForm', billingDetails, 'POST')
     setProcessing(true);
 
     const cardElement = elements.getElement("card");
@@ -75,9 +95,14 @@ const PaymentForm = ({ price, onSuccessfulCheckout }) => {
         return;
       }
 
-      alert('payment proccesed ok!')
+      await swal({
+        title: "Thank you!",
+        text: "We have successfully processed your payment!",
+        icon: "success",
+        button: "Close",
+      });
       history.push('/')
-      // onSuccessfulCheckout();
+      dispatch(getPassengers(1))
 
     } catch (err) {
       setCheckoutError(err.message);
@@ -86,11 +111,11 @@ const PaymentForm = ({ price, onSuccessfulCheckout }) => {
 
   const iframeStyles = {
     base: {
-      color: "#fff",
+      color: "grey",
       fontSize: "16px",
-      iconColor: "#fff",
+      iconColor: "grey",
       "::placeholder": {
-        color: "#87bbfd"
+        color: "grey"
       }
     },
     invalid: {
@@ -108,31 +133,81 @@ const PaymentForm = ({ price, onSuccessfulCheckout }) => {
     hidePostalCode: true
   };
 
-  return ( 
-    <form onSubmit={handleFormSubmit}>
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-      <Row>
-        <BillingDetails />
-      </Row>
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
 
-      <Row>
-        <CardElementContainer>
-          <CardElement
-            options={cardElementOpts}
-            onChange={handleCardDetailsChange}
-          />
-        </CardElementContainer>
-      </Row>
+  return (
+    <div>
+      <StepperHorizontal step={2}/>
+      <form onSubmit={handleFormSubmit}>
 
-      {checkoutError && <CheckoutError>{checkoutError}</CheckoutError>}
+        <div className={s.grid}>
+          <div className={s.title}>Complete with the card information</div>
+          <div>
+            <Button onClick={handleOpen}>
+              <CreditCardIcon />
+              Check payment options
+            </Button>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Payment options
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  <img src={visa} className={s.imagen} alt='imagen not found' />
+                  <img src={master} className={s.imagen} alt='imagen not found' />
+                  <img src={american} className={s.imagen} alt='imagen not found' />
+                  <img src={discover} className={s.imagen} alt='imagen not found' />
+                  <img src={diners} className={s.imagen} alt='imagen not found' />
+                  <img src={jcb} className={s.imagen} alt='imagen not found' />
+                  <img src={union} className={s.imagen} alt='imagen not found' />
 
-      <Row>
-        <SubmitButton disabled={processing || !stripe}>
-          {processing ? "Processing..." : `Pay $${price}`}
-        </SubmitButton>
-      </Row>
+                </Typography>
+              </Box>
+            </Modal>
+          </div>
+          <Row>
+            <BillingDetails />
+          </Row>
 
-    </form> 
+          <Row>
+            <CardElementContainer>
+              <CardElement
+                options={cardElementOpts}
+                onChange={handleCardDetailsChange}
+              />
+            </CardElementContainer>
+          </Row>
+
+          {checkoutError && <CheckoutError>{checkoutError}</CheckoutError>}
+
+          <Row>
+            <SubmitButton disabled={processing || !stripe}>
+              {processing ? "Processing..." : `Pay $${price}`}
+            </SubmitButton>
+          </Row>
+        </div>
+
+      </form>
+    </div>
   );
 };
 

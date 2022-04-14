@@ -72,3 +72,29 @@
     color: #0a66c2;
 }
 
+
+.price{
+    border-top: #867a7c solid 0.5px;
+    
+}
+
+.texto{
+    margin: 0;
+    position: relative;
+    left: 2rem;
+    top: 1rem;
+}
+
+.rank{
+color: white;
+background-color: green;
+padding: 4px;
+position: relative;
+left: 5px;
+}
+
+.offers{
+    flex-wrap: wrap;
+}
+
+

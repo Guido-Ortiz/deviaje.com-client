@@ -1,22 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import s from "./SearchBar.module.css";
-import { useDispatch } from "react-redux";
-import { getFlightsInfo } from "../../Redux/actions/actions";
+import { useSelector, useDispatch } from "react-redux";
+import { getFlightsInfo, getFlightsInfoToFrom, setValuesInputs, getPassengers } from "../../Redux/actions/actions";
 import validate from '../Landing/utils/validate'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
-function SearchBar( { setShowLoading } ) {
-  const dispatch = useDispatch();
-  // const flights = useSelector((state) => state.allFlights);
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
   
+function SearchBar() {
 
+  const dispatch = useDispatch();
+  const [passenger, setPassenger] = useState(1)
+  const dataInputs = useSelector((state) => state.dataInputs);
+  const passengers = useSelector((state) => state.passengers);
+  const [ toFrom, setToFrom ] = useState({name:''})
+  
   let handleInputChange = (e) => {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+  const handleInputChangeRadio = (e) => {
+    if(e.target.value === 'true'){
+      setToFrom(prevData => ({
+        ...prevData,
+        [e.target.name]: true
+      }))
+    }else{
+      setToFrom(prevData => ({
+        ...prevData,
+        [e.target.name]: false
+      }))
+    }
+  }
 
   const [input, setInput] = useState({
     fly_from: "",
@@ -30,18 +49,35 @@ function SearchBar( { setShowLoading } ) {
     dateFrom: "",
     dateTo: "",
   });
+  useEffect(() =>{
+    setInput( dataInputs )
+    setToFrom( state => ({...state, name:dataInputs.toFrom }))
+    setPassenger( passengers )
+  },[])
 
-  async function handleClick(e) {
+  const handleClick = (e) => {
     e.preventDefault();
     setError( validate( input ))
     if( Object.keys( validate( input )).length === 0 ){
-      setShowLoading( true )  
-      await  dispatch(getFlightsInfo(input));
-      setShowLoading( false )
+      const newInput = {
+        fly_from: input.fly_from,
+        fly_to: input.fly_to,
+        dateFrom: input.dateFrom,
+        dateTo: input.dateTo,
+        toFrom: toFrom.name
+      } 
+      dispatch(setValuesInputs( newInput ))
+      
+      if( newInput.toFrom === true ){
+        dispatch( getFlightsInfoToFrom( input ))
+        dispatch(getPassengers(passenger))
+      }else{
+        dispatch(getFlightsInfo( input ))
+        dispatch(getPassengers(passenger))
+      }
     }
-    
   }
-  
+
   return (
     <div className={s.display}>
       <div className={s.flights}>Flights</div>
@@ -50,10 +86,12 @@ function SearchBar( { setShowLoading } ) {
             className={s.radio}
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
+            name="name"
+            value={toFrom.name}
+            onChange={handleInputChangeRadio}
           >
-            <FormControlLabel value="female" control={<Radio />} label="Ida" sx={{marginLeft:'1px'}} />
-            <FormControlLabel value="male" control={<Radio />} label="Vuelta" />
+            <FormControlLabel value={true} control={<Radio />} label="Round trip" sx={{marginLeft:'10px'}}  />
+            <FormControlLabel value={false} control={<Radio />} label="One way" sx={{marginLeft:'1px'}} />
           </RadioGroup>
         </FormControl>
         <input
@@ -84,7 +122,7 @@ function SearchBar( { setShowLoading } ) {
               type="date"
               onChange={handleInputChange}
               name="dateFrom"
-              placeholder="dd-mm-yyyy"
+              placeholder="DD/MM/YYYY"
             />
             { 
             error.dateFrom && <p style={{ color:'red', margin:'2px 0 0 2px', fontSize:'14.5px' }} > { error.dateFrom } </p>
@@ -97,39 +135,27 @@ function SearchBar( { setShowLoading } ) {
               value={input.dateTo}
               onChange={handleInputChange}
               name="dateTo"
-              placeholder="dd-mm-yyyy"
+              placeholder="DD/MM/YYYY"
             />
             { 
             error.dateTo && <p style={{ color:'red', margin:'2px 0 0 2px', fontSize:'14.5px' }} > { error.dateTo } </p>
             }
           </div>
-        </div>
+      </div>
+
+      <div className={s.pass}>
+        <span className={s.placeh}>Passengers</span>
+        <RemoveIcon onClick={() => setPassenger(passenger - 1)} sx={{ mx: 1 }} />
+        {passenger}
+        <AddIcon onClick={() => setPassenger(passenger + 1)} sx={{ mx: 1 }} />
+      </div>
+
       <button className={s.btn} type="submit" onClick={handleClick}>
         <SearchIcon />
         Search
       </button>
+
     </div>
-    // <div className={s.display}>
-    //     <div className={s.flights}>Flights</div>
-    //     <input
-    //         type="text"
-    //         placeholder="Enter departure city"
-    //         className={s.input}
-    //     />
-    //     <input
-    //         type="text"
-    //         placeholder="Enter destination city"
-    //         className={s.input}
-    //     />
-    //     <div className={s.dates}>
-    //         <input type="date" placeholder="Date" className={s.date} />
-    //         <input type="date" className={s.date} />
-    //     </div>
-    //     <button className={s.btn}>
-    //         <SearchIcon />
-    //         Search
-    //     </button>
-    // </div>
   );
 }
 

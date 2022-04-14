@@ -9,7 +9,7 @@ function validate(input){
         errors.fly_to = "Origin and destination cant be the same"
     }
     if(!input.dateFrom){
-        errors.dateFrom = "Departure date required"
+        errors.dateFrom = "Date required"
     }
     if(!input.dateTo){
         errors.dateTo = "Return date required"

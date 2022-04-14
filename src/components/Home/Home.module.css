@@ -1,13 +1,15 @@
 .containerPrincipal{
   display: flex;
+  width: 90%;
   border: 2px solid #F8F9F9;
-  background-color: #dbe6e6;
-  margin-top: 1.8rem;
+  background-color: #e5eeee; 
+  margin-top: 2.35rem;
   margin-bottom: 1.8rem;
   border-radius: 1rem;
 }
+
 .home {
-  flex: 73.5%;
+  flex: 73.5%; 
   position: relative;
   border: 2px solid #F8F9F9; 
   display: flex;
@@ -16,7 +18,7 @@
   height: 200px;
   margin-top: 1.8rem;
   border-radius: 1rem;
-  background-color: #dbe6e6; 
+  background-color: #e5eeee; 
   border-right: #00000036 solid 1px 
 }
 
@@ -32,13 +34,27 @@
   align-items: stretch;
   width: 90%;
 }
-.containerGeneral{
+/* .containerGeneral{
   display: grid;
-  justify-items: start;
+  justify-items: flex-start;
+<<<<<<< HEAD
+=======
+  grid-template-columns: 2fr ;
+>>>>>>> e4f94f5ceaa9be0f18a2f8df468bdd65acb0c47e
   grid-template-columns: 1fr 2fr;
-  background-color: #bdd8e4; 
-}
+  background-color: #bdd8e4;  
+  background-color: #bacfd8;
+} */
 
+.containerGeneral{
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
+  grid-template-columns: 2fr ;
+  /* grid-template-columns: 1fr 2fr; */
+  /* background-color: #bdd8e4;   */
+  background-color: #bacfd8;
+}
 
 .containerSearch{    
   display: flex;
@@ -72,7 +88,7 @@
 .padding_left{
   padding-left: 0.4rem;
   font-size: 1.05rem;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Roboto Mono', monospace;
   color:#17202A
 }
 
@@ -94,7 +110,7 @@
   left:0; 
   padding: 1rem;
   background:#FDFEFE;
-  border-bottom-right-radius: 2rem;
+  border-bottom-right-radius: 1.2rem;
   border-top-left-radius: 1rem;
 }
 
@@ -108,35 +124,37 @@
   color:#17202A;
   margin-left: 10px; 
   font-size: 1.05rem;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .titlePrice{
   position: absolute; 
   top:0; 
   right:10px;
-  font-family: 'Roboto Condensed', sans-serif;
-  color: #141313;
+  font-family: 'Roboto Mono', monospace;
+  color:#2b2727;
   font-size:1.8rem;
 }
 .priceSimbol{
-  position: absolute;
+  /* position: absolute;
   top:40px;
-  right:70px;
-  font-family: 'Roboto Condensed', sans-serif;
+  right:70px; */
+  font-family: 'Roboto Mono', monospace;
   color:#111010;
-  font-size:1rem
+  font-size:1.2rem;
+  margin-top:.2rem
 }
 .taxes{
   margin-bottom: 1rem;
-  font-family: 'Roboto Condensed', sans-serif;
-  font-size: 1rem;
-  color:#000;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.02rem;
+  font-weight: bold;
+  color:#2b2727;
 }
 .finalPrice{
   margin-bottom: 2rem;
-  font-family: 'Roboto Condensed', sans-serif;
-  color:#000;
+  font-family: 'Roboto Mono', monospace;
+  color:#2b2727;
   font-size: 1.1rem;
   font-weight: bold;
 }
@@ -153,8 +171,7 @@
   cursor: pointer;
 }
 .buttonBuy:hover{
-  background-color: #84badf;
-  color: #212F3D
+  background-color: #4e8ab3;
 }
 .buttonBuy:active{
   transform: scale(.99);
@@ -169,3 +186,11 @@
   justify-content:flex-start;
   position: relative
 }
+
+.containerPriceNum{
+  display: flex;
+  position:absolute;
+  top:2.5rem;
+  left:11rem  
+}
+

@@ -41,6 +41,25 @@ function FlightInfo({departure, arrival, date, cityD, cityA, timeD, timeA, durat
                     <div className={s.time}>{durationTime}</div>
                 </div>
             </div>
+            {/* -------- SI TENGO VUELTA --------- */}
+            <div className={s.salida}>RETURN</div>
+            <div className={s.fecha}>fecha vuelta</div>
+            <div className={s.aerolinea}>aerolinea</div>
+            <div className={s.viaje}>
+                <div className={s.ciudad}>
+                    <div className={s.city}>{cityA}</div>
+                    <div className={s.time}>salida</div>
+                </div> 
+                <div className={s.ciudad}>--------</div>
+                <div className={s.ciudad}>
+                    <div className={s.city}>{cityD}</div>
+                    <div className={s.time}>hora</div>
+                </div>
+                <div className={s.ciudad}>
+                    <div className={s.city}>Duration</div>
+                    <div className={s.time}>duracion</div>
+                </div>
+            </div>
         </div>
     );
 }

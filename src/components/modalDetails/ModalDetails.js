@@ -23,9 +23,7 @@ export const ModalDetails = ( { setShowDetails, idDetails } ) => {
     const [hours, minutes] = [Math.floor(time/60), time%60];
     return [hours, minutes]
   }
-  console.log(getHours(getHoursStop("2022-04-08T12:40:00.000Z","2022-04-08T13:45:00.000Z")))
 
-  console.log(idDetails)
   return (
     <>
       <div className={styles.modal}>
