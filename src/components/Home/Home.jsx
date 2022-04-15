@@ -27,7 +27,7 @@ export default function Home() {
   const [idDetails, setIdDetails] = useState()
 
   let [currentPage, setcurrentPage] = useState(1);
-  const [flightsPerPage,] = useState(10)
+  const [flightsPerPage,] = useState(6)
   const indexOfLastFlight = currentPage * flightsPerPage; // 10
   const indexOfFirstFlight = indexOfLastFlight - flightsPerPage // 10 - 10 = 0 
   const currentFlights = flights && flights?.slice(indexOfFirstFlight, indexOfLastFlight)
@@ -81,12 +81,15 @@ export default function Home() {
             )
           ) 
         }
-         <Paginado
-            flightsPerPage={flightsPerPage}
-            flights={flights && flights.length}
-            pagination={pagination}
-            currentPage={currentPage}
-            />
+        {
+          currentFlights.length !== 0 && <Paginado
+                                              flightsPerPage={flightsPerPage}
+                                              flights={flights && flights.length}
+                                              pagination={pagination}
+                                              currentPage={currentPage}
+                                          />
+        }
+     
       </div>
     </div>
   );

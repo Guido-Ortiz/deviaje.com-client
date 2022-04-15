@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { CardScaleDetails } from "./CardScaleDetails";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Popup from 'reactjs-popup';
 import { IoIosAirplane } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./cardFromTo.module.css";
 import { useAuth0 } from '@auth0/auth0-react'
 import { useHistory } from "react-router-dom";
 import swal from 'sweetalert';
+import { getReturn, resetReturn } from '../../Redux/actions/actions';
 
 const CardFromTo = ({ handleDetails, f }) => {
 
@@ -25,8 +26,10 @@ const CardFromTo = ({ handleDetails, f }) => {
 
   const handleBuy = aux => {
     user && isAuthenticated ? history.push(aux) : swal("Stop!", "If you want to buy, you must be registered!", "error")
-
+    dispatch(getReturn(filterReturn))
   }
+  
+  const dispatch = useDispatch()
     
   return (
         <div key={f.id} className={styles.containerPrincipal} >
@@ -57,10 +60,10 @@ const CardFromTo = ({ handleDetails, f }) => {
                 
                             { 
                               filterDeparture.length === 1 ? 
-                                <p style={{}}>Non-Stop</p>
+                                <p style={{marginBottom:0}}>Non-Stop</p>
                               : 
                                 <Popup
-                                  trigger={  <p style={{cursor: 'pointer'}}>
+                                  trigger={  <p style={{cursor: 'pointer', marginBottom:0}}>
                                   {filterDeparture.length > 2 ? (filterDeparture.length - 1) + ' Stops' : (filterDeparture.length - 1) + ' Stop'}</p> }
                                   position='top center'
                                   on={['hover', 'focus']}
@@ -100,10 +103,10 @@ const CardFromTo = ({ handleDetails, f }) => {
                           <h4 className={styles.padding_left}>
                             { 
                               filterReturn.length === 1 ? 
-                                <p style={{}}>Non-Stop</p>
+                                <p style={{marginBottom:0}}>Non-Stop</p>
                               : 
                                 <Popup
-                                  trigger={  <p style={{cursor: 'pointer'}}>
+                                  trigger={  <p style={{cursor: 'pointer', marginBottom:0}}>
                                   {filterReturn.length > 2 ? (filterReturn.length - 1) + ' Stops' : (filterReturn.length - 1) + ' Stop'}</p> }
                                   position='top center'
                                   on={['hover', 'focus']}

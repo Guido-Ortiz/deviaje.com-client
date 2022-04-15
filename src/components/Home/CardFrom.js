@@ -45,10 +45,10 @@ const CardFrom = ({ handleDetails, f }) => {
                         <div style={{display: 'flex', flex:'20%', justifyContent:'right'}}>  
                           <h4 className={styles.padding_left}>
                             { f.route.length === 1 ? 
-                            <p style={{}}>Non-Stop</p>
+                            <p style={{marginBottom:0}}>Non-Stop</p>
                             : 
                               <Popup
-                                trigger={  <p style={{cursor: 'pointer'}}>
+                                trigger={  <p style={{cursor: 'pointer', marginBottom:0}}>
                                 {f.route.length > 2 ? (f.route.length - 1) + ' Stops' : (f.route.length - 1) + ' Stop'}</p> }
                                 position='top center'
                                 on={['hover', 'focus']}

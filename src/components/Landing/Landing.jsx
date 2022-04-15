@@ -95,7 +95,7 @@ function Landing() {
           Welcome to <span className={s.url}>deviaje.com</span>
         </h1>
         {
-          showLoading && <div style={{ marginTop: '-8rem' }} > <Loading /> </div>
+          showLoading && <div style={{ marginTop: '-8.2rem' }} > <Loading /> </div>
         }
         {
           modalErr && <Modal title='No flights found' />
@@ -110,7 +110,7 @@ function Landing() {
               defaultValue={false}
               onChange={handleInputChangeRadio}
             >
-              <FormControlLabel value={true} control={<Radio />} label=" Round trip" sx={{ marginLeft: '1rem', marginTop: '7px'}} />
+              <FormControlLabel value={true} control={<Radio />} label=" Round trip" sx={{ marginLeft: '.5rem', marginTop: '7px'}} />
               <FormControlLabel value={false} control={<Radio />} label=" One way" sx={{ marginLeft: '8rem', marginTop: '-54px' }} />
             </RadioGroup>
           </FormControl>
@@ -125,7 +125,7 @@ function Landing() {
               style={{ position: 'relative', left: '-2rem' }}
             />
             {
-              errors.fly_from && <div style={{ position: 'absolute', bottom: '.3rem', left: '1.5rem' }} className={s.errors}>{errors.fly_from}</div>
+              errors.fly_from && <div style={{ position: 'absolute', bottom: '.3rem', left: '2.5rem' }} className={s.errors}>{errors.fly_from}</div>
             }
           </div>
           <div className={s.boxErrors}>
@@ -139,7 +139,7 @@ function Landing() {
               style={{ position: 'relative', left: '-2rem' }}
             />
             {
-              errors.fly_to && <div style={{ position: 'absolute', bottom: '.3rem', left: '14.5rem' }} className={s.errors}>{errors.fly_to}</div>
+              errors.fly_to && <div style={{ position: 'absolute', bottom: '.3rem', left: '15rem' }} className={s.errors}>{errors.fly_to}</div>
             }
           </div>
 

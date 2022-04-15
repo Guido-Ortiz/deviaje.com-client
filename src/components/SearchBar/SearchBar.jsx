@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
+import { IconButton } from "@material-ui/core";
 import s from "./SearchBar.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getFlightsInfo, getFlightsInfoToFrom, setValuesInputs, getPassengers } from "../../Redux/actions/actions";
@@ -145,9 +146,19 @@ function SearchBar() {
 
       <div className={s.pass}>
         <span className={s.placeh}>Passengers</span>
-        <RemoveIcon onClick={() => setPassenger(passenger - 1)} sx={{ mx: 1 }} />
+        <IconButton
+            onClick={() => setPassenger(passenger - 1)}
+            disabled={ passenger <= 1 ? true : false }
+        >
+        <RemoveIcon  sx={{ mx: 1 }} />
+        </IconButton>
         {passenger}
-        <AddIcon onClick={() => setPassenger(passenger + 1)} sx={{ mx: 1 }} />
+        <IconButton
+            onClick={() => setPassenger(passenger + 1)}
+            disabled={ passenger >= 6 ? true : false }
+            >
+        <AddIcon sx={{ mx: 1 }} />
+        </IconButton>
       </div>
 
       <button className={s.btn} type="submit" onClick={handleClick}>

@@ -1,6 +1,6 @@
 .containerPrincipal{
     display: flex;
-    width: 90%;
+    width: 95%;
     border: 2px solid #F8F9F9;
     background-color: #e5eeee;
     margin-top: 2.35rem;
@@ -138,7 +138,7 @@
   
   .titlePrice{
     position: absolute; 
-    top:25px; 
+    top:10px; 
     right:25px;
     font-family: 'Roboto Mono', monospace;
     color:rgb(39, 36, 36);
@@ -200,6 +200,6 @@
   .containerPriceNum{
     display: flex;
     position:absolute;
-    top:4rem;
-    left:11rem  
+    top:2.5rem;
+    left:6rem  
   }

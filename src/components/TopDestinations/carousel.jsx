@@ -81,6 +81,7 @@ export  function TopDestination(){
         //dispatch(topdestination(e.target.value))
         //setShowLoading(false)
         history.push('/home')
+        window.scroll(0, 0)
    }
 
    const onSuccess = location => {

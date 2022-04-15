@@ -64,7 +64,7 @@ body{
 
 .flex{
     position: absolute;
-    top: 55%;
+    top: 60%;
     left: 40px;
     width: 1150px;
     height: 180px;
@@ -148,8 +148,8 @@ body{
     font-size:1rem;
     font-family: 'Roboto Condensed', sans-serif;
     margin-top: -3.5rem;
-    margin-left: 2rem;
+    margin-left: 3rem;
     background: white;
-    padding-right: 12.5rem;
+    padding-right: 11.9rem;
     margin-bottom: 40px;
 }

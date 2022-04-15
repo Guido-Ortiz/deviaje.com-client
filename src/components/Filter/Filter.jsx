@@ -90,15 +90,15 @@ function Filter( ) {
             <div className={s.container2}>
                 <FormLabel className={s.title}  id="demo-radio-buttons-group-label">Price</FormLabel>
                 <div className={s.flex}>
-                <div>
-                    <span className={s.padding} >$10</span>
+                    <div>
+                        <span className={s.padding} >USD 50</span>
+                    </div>
+                    <div>
+                        <span className={s.price}>{price}</span>
+                        <input className={s.range} type="range" min='50' max='5000' name='price'  value={price}  onChange={handleInputPrice}/>
+                        <span className={s.padding}>USD 5.000</span>
+                    </div>
                 </div>
-                <div>
-                    <span className={s.price}>{price}</span>
-                    <input className={s.range} type="range" min='10' max='1000' name='price'  value={price}  onChange={handleInputPrice}/>
-                    <span className={s.padding}>$1.000</span>
-                </div>
-            </div>
             </div> 
             <div   className={s.container2}>
             <FormLabel className={s.title} id="demo-radio-buttons-group-label">Availability</FormLabel>

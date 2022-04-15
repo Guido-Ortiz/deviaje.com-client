@@ -22,8 +22,8 @@ import jcb from './assets/jcb.png';
 import union from './assets/union.png';
 import { axiosWithOutToken } from '../../services/axios'
 import swal from 'sweetalert';
-import { useDispatch } from "react-redux";
-import { getPassengers } from "../../Redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { getPassengers, resetData } from "../../Redux/actions/actions";
 import StepperHorizontal from '../Stepper/StepperHorizontal';
 
 const CardElementContainer = styled.div`
@@ -49,6 +49,8 @@ const PaymentForm = ({ price }) => {
     ev.error ? setCheckoutError(ev.error.message) : setCheckoutError();
   };
 
+  const passengersInfo = useSelector(state => state.passengersInfo)
+
   const handleFormSubmit = async ev => {
     ev.preventDefault();
 
@@ -62,7 +64,7 @@ const PaymentForm = ({ price }) => {
         postal_code: ev.target.zip.value
       }
     };
-    console.log(billingDetails)
+    
     await axiosWithOutToken('/paymentForm', billingDetails, 'POST')
     setProcessing(true);
 
@@ -93,17 +95,18 @@ const PaymentForm = ({ price }) => {
         setCheckoutError(error.message);
         setProcessing(false);
         return;
-      }
-
+      }    
+      // await axiosWithOutToken('/passengersInfo', passengersInfo, 'POST')
       await swal({
         title: "Thank you!",
         text: "We have successfully processed your payment!",
         icon: "success",
         button: "Close",
       });
+
       history.push('/')
       dispatch(getPassengers(1))
-
+      dispatch(resetData())
     } catch (err) {
       setCheckoutError(err.message);
     }

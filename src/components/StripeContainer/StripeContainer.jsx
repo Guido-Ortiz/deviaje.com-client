@@ -15,7 +15,7 @@ function StripeContainer() {
     const {id} = useParams()
     const flight = flights?.filter(f => f.id === id)
     
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0) // para llevar la ventana arriba
     return (
         <Elements stripe={stripePromise}>
             <PaymentForm price={(flight[0].price * 1.8).toFixed()} />
