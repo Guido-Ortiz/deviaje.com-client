@@ -3,9 +3,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { getFlightsInfo, setValuesInputs, getFlightsInfoToFrom, getPassengers } from "../../Redux/actions/actions";
+import { getFlightsInfo, setValuesInputs, getFlightsInfoToFrom, 
+  getFlightsInfoExact, getFlightsInfoToFromExact, getPassengers } from "../../Redux/actions/actions";
 import s from "./Landing.module.css";
-import validate from './utils/validate';
+//import validate from './utils/validate';
 import { Modal } from '../../components/modal/index'
 import { Loading } from "../loading/Loading";
 import AddIcon from '@mui/icons-material/Add';
@@ -16,14 +17,35 @@ import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { TopDestination } from "../TopDestinations/carousel";
+import Checkbox from '@mui/material/Checkbox';
 import { useTranslation } from 'react-i18next';
-
 
 function Landing() {
 
+  function validate(input){
+    let errors = {}
+    if(!input.fly_from){
+        errors.fly_from = "Departure city required"
+    }
+    if(!input.fly_to){
+        errors.fly_to = "Destination required"
+    } else if(input.fly_to.toLowerCase() === input.fly_from.toLowerCase()){
+        errors.fly_to = "Origin and destination cant be the same"
+    }
+    if(!input.dateFrom){
+        errors.dateFrom = "Date required"
+    }
+    if(!input.dateTo && (toFrom.name || check)){
+        errors.dateTo = "Return date required"
+    } else if(Date.parse(input.dateTo) < Date.parse(input.dateFrom)){
+        errors.dateTo = "Return date must be after departure date"
+    }
+    return errors
+}
+
   const [t, i18n] = useTranslation('global')
   const dispatch = useDispatch()
-
+  
   const history = useHistory()
   const modalErr = useSelector((state) => state.modalErr)
 
@@ -33,9 +55,10 @@ function Landing() {
     dateFrom: "",
     dateTo: "",
   })
-  const [toFrom, setToFrom] = useState({ name: false })
+  const [toFrom, setToFrom] = useState({ name: true })
   const [showLoading, setShowLoading] = useState(false)
   const [errors, setErrors] = useState({})
+  const [ check, setCheck ] = useState( false )
 
   let handleInputChange = e => {
     setInput(prev => ({
@@ -44,9 +67,9 @@ function Landing() {
     }))
 
     setErrors(validate({
-      ...input,
-      [e.target.name]: e.target.value
-    }))
+       ...input,
+       [e.target.name]: e.target.value
+     }))
   }
   const handleInputChangeRadio = (e) => {
     if (e.target.value === 'true') {
@@ -62,34 +85,54 @@ function Landing() {
     }
   }
 
+  const handleChangeCheck = (e) => {
+    setCheck( e.target.checked )
+  }
+  
   const [pass, setPass] = useState(1)
 
   const handleClick = async (e) => {
     e.preventDefault()
+
     setShowLoading(true)
     const newInput = {
-      fly_from: input.fly_from,
-      fly_to: input.fly_to,
-      dateFrom: input.dateFrom,
-      dateTo: input.dateTo,
-      toFrom: toFrom.name,
-      pass
+        fly_from: input.fly_from,
+        fly_to: input.fly_to,
+        dateFrom: input.dateFrom,
+        dateTo: input.dateTo,
+        toFrom: toFrom.name,
+        pass
     }
     dispatch(setValuesInputs(newInput))
     dispatch(getPassengers(pass))
+
     if (newInput.toFrom === true) {
-      const res = await dispatch(getFlightsInfoToFrom(input))
-      if (res.payload === true) { return setShowLoading(false) }
-      setShowLoading(false)
-      history.push('/home')
+        if( check === false ){
+          const res = await dispatch(getFlightsInfoToFromExact(input))
+          if (res.payload === true) { return setShowLoading(false) }
+          setShowLoading(false)
+          history.push('/home')
+        }else {
+          const res = await dispatch(getFlightsInfoToFrom(input))
+          if (res.payload === true) { return setShowLoading(false) }
+          setShowLoading(false)
+          history.push('/home')
+        }
     } else {
-      const res = await dispatch(getFlightsInfo(input))
-      if (res.payload === true) { return setShowLoading(false) }
-      setShowLoading(false)
-      history.push('/home')
+        if( check === false ){
+          const res = await dispatch(getFlightsInfoExact(input))
+          if (res.payload === true) { return setShowLoading(false) }
+          setShowLoading(false)
+          history.push('/home')
+        }else {
+          const res = await dispatch(getFlightsInfo(input))
+          if (res.payload === true) { return setShowLoading(false) }
+          setShowLoading(false)
+          history.push('/home')
+        }
     }
   }
-
+  
   return (
     <>
       <div className={s.fondo}>
@@ -102,77 +145,112 @@ function Landing() {
         {
           modalErr && <Modal title='No flights found' />
         }
-        <div className={s.flex}>
-          <FormControl>
-            <RadioGroup
-              className={s.radio}
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="name"
-              defaultValue={false}
-              onChange={handleInputChangeRadio}
-            >
-              <FormControlLabel value={true} control={<Radio />} label={t("searchBar.vuelta")} sx={{ marginLeft: '.5rem', marginTop: '7px'}} />
-              <FormControlLabel value={false} control={<Radio />} label={t("searchBar.ida")} sx={{ marginLeft: '8rem', marginTop: '-54px' }} />
-            </RadioGroup>
-          </FormControl>
-          <div className={s.boxErrors}>
-            <input
-              type="text"
-              placeholder={t("searchBar.phSalida")}
-              value={input.fly_from}
-              onChange={e => handleInputChange(e)}
-              name="fly_from"
-              className={s.input}
-              style={{ position: 'relative', left: '-2rem' }}
-            />
+
+        <div className={s.containerPrincipal}>
+          <div className={s.flex}>
+            <FormControl>
+              <RadioGroup
+                className={s.radio}
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="name"
+                defaultValue={ true }
+                onChange={handleInputChangeRadio}
+              >
+                <FormControlLabel value={true} control={<Radio />} label={t("searchBar.vuelta")} sx={{ marginLeft: '.5rem', marginTop: '7px'}} />
+                <FormControlLabel value={false} control={<Radio />} label={t("searchBar.ida")} sx={{ marginLeft: '8rem', marginTop: '-54px' }} />
+              </RadioGroup>
+            </FormControl>
+            <div className={s.boxErrors}>
+              <input
+                type="text"
+                placeholder={t("searchBar.phSalida")}
+                value={input.fly_from}
+                onChange={e => handleInputChange(e)}
+                name="fly_from"
+                className={s.input}
+                style={{ position: 'relative', left: '-2rem' }}
+              />
+              {
+                errors.fly_from && <div style={{ position: 'absolute', bottom: '3rem', left: '2.5rem' }} className={s.errors}>{errors.fly_from}</div>
+              }
+            </div>
+            <div className={s.boxErrors}>
+              <input
+                type="text"
+                placeholder={t("searchBar.phDestino")}
+                value={input.fly_to}
+                onChange={e => handleInputChange(e)}
+                name="fly_to"
+                className={s.input}
+                style={{ position: 'relative', left: '-2rem' }}
+              />
+              {
+                errors.fly_to && <div style={{ position: 'absolute', bottom: '3rem', left: '15rem' }} className={s.errors}>{errors.fly_to}</div>
+              }
+            </div>
+
+            <div className={s.boxErrors}>
+              <input type="date"
+                placeholder="Date"
+                value={input.dateFrom}
+                onChange={e => handleInputChange(e)}
+                name="dateFrom"
+                className={s.date}
+                style={{ position: 'relative', left: '-2rem' }}
+              />
+              {
+                errors.dateFrom && <div style={{ position: 'absolute', bottom: '3rem', left: '27.7rem' }} className={s.errors}>{errors.dateFrom}</div>
+              }
+            </div>
+
+            <div className={s.boxErrors}>
+              <input type="date"
+                value={input.dateTo}
+                onChange={e => handleInputChange(e)}
+                name="dateTo"
+                className={s.date}
+                style={{ position: 'relative', left: '-2rem' }}
+                disabled={ toFrom.name && check === false ? false : check === true ? false : true }
+              />
+              {
+                errors.dateTo && <div style={{ position: 'absolute', bottom: '3rem', left: '37.5rem' }} className={s.errors}>{errors.dateTo}</div>
+              }
+            </div>
+
+            <div className={s.pass}>
+              <span className={s.placeh}>{t("searchBar.pasajeros")}</span>
+              <IconButton
+                onClick={() => setPass(pass - 1)}
+                disabled={ pass <= 1 ? true : false }
+              >
+                <RemoveIcon  sx={{ cursor: 'pointer' }} />
+              </IconButton>
+                {pass}
+              <IconButton
+                onClick={() => setPass(pass + 1)}
+                disabled={ pass >= 6 ? true : false }
+              >
+                <AddIcon  sx={{ cursor:'pointer' }} />
+              </IconButton>
+            </div>
+
             {
-              errors.fly_from && <div style={{ position: 'absolute', bottom: '.3rem', left: '2.5rem' }} className={s.errors}>{errors.fly_from}</div>
-            }
-          </div>
-          <div className={s.boxErrors}>
-            <input
-              type="text"
-              placeholder={t("searchBar.phDestino")}
-              value={input.fly_to}
-              onChange={e => handleInputChange(e)}
-              name="fly_to"
-              className={s.input}
-              style={{ position: 'relative', left: '-2rem' }}
-            />
-            {
-              errors.fly_to && <div style={{ position: 'absolute', bottom: '.3rem', left: '15rem' }} className={s.errors}>{errors.fly_to}</div>
+              Object.keys(errors).length === 0  ?
+                (<button className={s.btn} type="submit" onClick={e => handleClick(e)}>
+                  <SearchIcon />
+                  {t("searchBar.btn")}
+                </button>)
+                : <button className={s.btn} type="submit" onClick={e => handleClick(e)} disabled>
+                  <SearchIcon />
+                  {t("searchBar.btn")}
+                </button>
             }
           </div>
 
-          <div className={s.boxErrors}>
-            <input type="date"
-              placeholder="Date"
-              value={input.dateFrom}
-              onChange={e => handleInputChange(e)}
-              name="dateFrom"
-              className={s.date}
-              style={{ position: 'relative', left: '-2rem' }}
-            />
-            {
-              errors.dateFrom && <div style={{ position: 'absolute', bottom: '.3rem', left: '27.7rem' }} className={s.errors}>{errors.dateFrom}</div>
-            }
-          </div>
+          <FormControlLabel className={s.checkbox} control={<Checkbox onChange={ handleChangeCheck } />} label={t("searchBar.range")} />
 
-          <div className={s.boxErrors}>
-            <input type="date"
-              value={input.dateTo}
-              onChange={e => handleInputChange(e)}
-              name="dateTo"
-              className={s.date}
-              style={{ position: 'relative', left: '-2rem' }}
-            />
-            {
-              errors.dateTo && <div style={{ position: 'absolute', bottom: '.3rem', left: '37.5rem' }} className={s.errors}>{errors.dateTo}</div>
-            }
-          </div>
-
-          <div className={s.pass}>
+          {/* <div className={s.pass}>
             <span className={s.placeh}>{t("searchBar.pasajeros")}</span>
             <IconButton
               onClick={() => setPass(pass - 1)}
@@ -187,9 +265,9 @@ function Landing() {
             >
               <AddIcon  sx={{ cursor:'pointer' }} />
             </IconButton>
-          </div>
+          </div> */}
 
-          {
+          {/* {
             Object.keys(errors).length === 0 && input.fly_to && input.fly_from && input.dateFrom && input.dateTo ?
               (<button className={s.btn} type="submit" onClick={e => handleClick(e)}>
                 <SearchIcon />
@@ -199,9 +277,9 @@ function Landing() {
                 <SearchIcon />
                 {t("searchBar.btn")}
               </button>
-          }
+          } */}
 
-        </div>
+        </div> 
       </div>
       <TopDestination />
     </>

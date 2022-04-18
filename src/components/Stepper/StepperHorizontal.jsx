@@ -4,13 +4,14 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 
+
 const steps = [
-  'Select a flight',
-  'Complete passengers information',
-  'Pay',
+  "Select a flight",
+  "Complete passengers information",
+  "Pay"
 ];
 
-export default function HorizontalLabelPositionBelowStepper({step}) {
+export default function HorizontalLabelPositionBelowStepper({ step }) {
   return (
     <Box sx={{ width: '100%', marginTop: '30px', marginBottom: '30px' }}>
       <Stepper activeStep={step} alternativeLabel>

@@ -14,6 +14,7 @@ import { axiosWithOutToken } from '../../services/axios'
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import es from './assets/es.png'
+import en from './assets/en.png'
 
 const Nav = () => {
 
@@ -85,10 +86,12 @@ const Nav = () => {
           </div>
 
           <div>
-            <button onClick={() => i18n.changeLanguage('es')}>
-              es
+            <button onClick={() => i18n.changeLanguage('es')} className={styles.flags}>
+              <img src={es} alt="espaniol" />
             </button>
-            <button onClick={() => i18n.changeLanguage('en')}>EN</button>
+            <button onClick={() => i18n.changeLanguage('en')} className={styles.flags}>
+              <img src={en} alt="espaniol" />
+            </button>
           </div>
 
           <div className={styles.containerButton}>
@@ -114,9 +117,9 @@ const Nav = () => {
                     'aria-labelledby': 'basic-button'
                   }}
                 >
-                  <MenuItem onClick={handleProfile}>Profile</MenuItem>
-                  <MenuItem onClick={handleForm}>Settings</MenuItem>
-                  <MenuItem onClick={handleClickLogout}>Logout</MenuItem>
+                  <MenuItem onClick={handleProfile}>{t("nav.per")}</MenuItem>
+                  <MenuItem onClick={handleForm}>{t("nav.s")}</MenuItem>
+                  <MenuItem onClick={handleClickLogout}>{t("nav.l")}</MenuItem>
                 </Menu>
               </div>
             ) : (

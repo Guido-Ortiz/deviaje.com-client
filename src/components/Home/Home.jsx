@@ -10,6 +10,7 @@ import { Paginado } from "../Paginado/paginado";
 import CardFrom from "./CardFrom";
 import CardFromTo from "./CardFromTo";
 import { ModalDetailsReturn } from "../modalDetails/modalDetailsReturn";
+import { useTranslation } from "react-i18next";
 
 
 export default function Home() {
@@ -23,7 +24,6 @@ export default function Home() {
   const [showDetailsReturn, setShowDetailsReturn] = useState(false)
   const [detailsReturn, setDetailsReturn] = useState([])
 
-  const [showLoading, setShowLoading] = useState(false)
   const [idDetails, setIdDetails] = useState()
 
   let [currentPage, setcurrentPage] = useState(1);
@@ -31,7 +31,7 @@ export default function Home() {
   const indexOfLastFlight = currentPage * flightsPerPage; // 10
   const indexOfFirstFlight = indexOfLastFlight - flightsPerPage // 10 - 10 = 0 
   const currentFlights = flights && flights?.slice(indexOfFirstFlight, indexOfLastFlight)
-
+  
   const pagination = (pageNumber) => {
     setcurrentPage(pageNumber)
     window.scroll(0, 0)
@@ -47,6 +47,8 @@ export default function Home() {
     setShowDetailsReturn(true)
   }
 
+  const [t, i18n] = useTranslation('global')
+
   return (
 
     <div className={styles.containerGeneral}>
@@ -59,7 +61,7 @@ export default function Home() {
           setShowDetails={setShowDetailsReturn} detailsReturn={detailsReturn} />
       }
       {
-        modalErr && <Modal title='No flights found' />
+        modalErr && <Modal title={t("home.modal")} />
       }
       <div className={styles.containerSearch}>
         <SearchBar/>
@@ -82,7 +84,7 @@ export default function Home() {
           ) 
         }
         {
-          currentFlights.length !== 0 && <Paginado
+          currentFlights && currentFlights.length !== 0 && <Paginado
                                               flightsPerPage={flightsPerPage}
                                               flights={flights && flights.length}
                                               pagination={pagination}

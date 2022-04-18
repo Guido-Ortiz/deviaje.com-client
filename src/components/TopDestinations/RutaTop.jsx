@@ -16,11 +16,10 @@ import top6 from './assets/barcelona.jpg'
 import top7 from './assets/Miami-In-April-Cover.webp'
 import { useHistory } from 'react-router-dom'
 import { useEffect } from 'react';
-
-
+import { useTranslation } from 'react-i18next';
 
 export default function CardDestination() {
-
+  const [t, i18n] = useTranslation('global')
   const dispatch = useDispatch()
   const history = useHistory()
   const cities = useSelector(state => state.destination)
@@ -72,20 +71,20 @@ export default function CardDestination() {
                 <input type="image" alt='Orlando' src={top} height="140" width='100%' value='orlando' onClick={handleSearch} />
                 <CardContent>
                   <Typography variant="h5" component="div">
-                    Visit { cityname && cityname[0] }
+                    {t("ofer.vi")} { cityname && cityname[0] }
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Going from Buenos Aires
+                  {t("ofer.desde")}
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
                 <Typography variant="body2" className={s.rank}>
-                  Global Rank   { cityRank && cityRank[0] }
+                {t("ofer.rank")}   { cityRank && cityRank[0] }
                 </Typography>
               </CardActions>
               <div className={s.precio}>
-                <Typography variant='body2' className={s.texto}>Lowest Price</Typography>
+                <Typography variant='body2' className={s.texto}>{t("ofer.precio")}</Typography>
                 <Typography color='green' variant="body1" className={s.texto}>
                   $500
                 </Typography>
@@ -98,21 +97,21 @@ export default function CardDestination() {
               <input type="image" alt='miami' src={top1} height="140" width='100%' value='miami' onClick={handleSearch} />
               <CardContent>
                 <Typography variant="h5" component="div">
-                  Visit { cityname && cityname[1] }
+                {t("ofer.vi")} { cityname && cityname[1] }
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Going from Buenos Aires
+                {t("ofer.desde")}
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
               <Typography variant="body2" className={s.rank}>
-                Global Rank   { cityRank && cityRank[1] }
+              {t("ofer.rank")}   { cityRank && cityRank[1] }
               </Typography>
             </CardActions>
             <div className={s.precio}>
 
-              <Typography variant='body2' className={s.texto}>Lowest Price</Typography>
+              <Typography variant='body2' className={s.texto}>{t("ofer.precio")}</Typography>
 
               <Typography color='green' variant="body1" className={s.texto}>
                 $500
@@ -124,24 +123,24 @@ export default function CardDestination() {
 
           <Card sx={{ maxWidth: 250, height: 360, margin: '1rem' }}>
             <CardActionArea>
-              <input type="image" alt='las vegas' src={top2} height="140" width='100%' value='las vegas' onClick={handleSearch} />
+              <input type="image" alt='las vegas' src={top5} height="140" width='100%' value='las vegas' onClick={handleSearch} />
               <CardContent>
                 <Typography variant="h5" component="div">
-                  Visit { cityname && cityname[2] }
+                {t("ofer.vi")} { cityname && cityname[2] }
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Going from Buenos Aires
+                {t("ofer.desde")}
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
               <Typography variant="body2" className={s.rank}>
-                Global Rank   { cityRank && cityRank[2] }
+              {t("ofer.rank")}   { cityRank && cityRank[2] }
               </Typography>
             </CardActions>
             <div className={s.precio}>
 
-              <Typography variant='body2' className={s.texto}>Lowest Price</Typography>
+              <Typography variant='body2' className={s.texto}>{t("ofer.precio")}</Typography>
 
               <Typography color='green' variant="body1" className={s.texto}>
                 $500
@@ -156,21 +155,21 @@ export default function CardDestination() {
               <input type="image" alt='los angeles' src={top3} height="140" width='100%' value='los angeles' onClick={handleSearch} />
               <CardContent>
                 <Typography variant="h5" component="div">
-                  Visit { cityname && cityname[3] }
+                {t("ofer.vi")} { cityname && cityname[3] }
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Going from Buenos Aires
+                {t("ofer.desde")}
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
               <Typography variant="body2" className={s.rank}>
-                Global Rank   { cityRank && cityRank[3] }
+              {t("ofer.rank")}   { cityRank && cityRank[3] }
               </Typography>
             </CardActions>
             <div className={s.precio}>
 
-              <Typography variant='body2' className={s.texto}>Lowest Price</Typography>
+              <Typography variant='body2' className={s.texto}>{t("ofer.precio")}</Typography>
 
               <Typography color='green' variant="body1" className={s.texto}>
                 $500
@@ -185,21 +184,21 @@ export default function CardDestination() {
               <input type="image" alt='san francisco' src={top4} height="140" width='100%' value='san francisco' onClick={handleSearch} />
               <CardContent>
                 <Typography variant="h5" component="div">
-                  Visit { cityname && cityname[4] }
+                {t("ofer.vi")} { cityname && cityname[4] }
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Going from Buenos Aires
+                {t("ofer.desde")}
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
               <Typography variant="body2" className={s.rank}>
-                Global Rank   { cityname && cityRank[4] }
+              {t("ofer.rank")}   { cityname && cityRank[4] }
               </Typography>
             </CardActions>
             <div className={s.precio}>
 
-              <Typography variant='body2' className={s.texto}>Lowest Price</Typography>
+              <Typography variant='body2' className={s.texto}>{t("ofer.precio")}</Typography>
 
               <Typography color='green' variant="body1" className={s.texto}>
                 $500
@@ -211,24 +210,24 @@ export default function CardDestination() {
 
           <Card sx={{ maxWidth: 250, height: 360, margin: '1rem' }}>
             <CardActionArea>
-              <input type="image" alt='mexico city' src={top5} height="140" width='100%' value='mexico city' onClick={(e) => handleSearch(e)} />
+              <input type="image" alt='mexico city' src={top2} height="140" width='100%' value='mexico city' onClick={(e) => handleSearch(e)} />
               <CardContent>
                 <Typography variant="h5" component="div">
-                  Visit { cityname && cityname[5] }
+                {t("ofer.vi")} { cityname && cityname[5] }
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Going from Buenos Aires
+                {t("ofer.desde")}
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
               <Typography variant="body2" className={s.rank}>
-                Global Rank   { cityRank && cityRank[5] }
+              {t("ofer.rank")}   { cityRank && cityRank[5] }
               </Typography>
             </CardActions>
             <div className={s.precio}>
 
-              <Typography variant='body2' className={s.texto}>Lowest Price</Typography>
+              <Typography variant='body2' className={s.texto}>{t("ofer.precio")}</Typography>
 
               <Typography color='green' variant="body1" className={s.texto}>
                 $500
@@ -243,21 +242,21 @@ export default function CardDestination() {
               <input type="image" alt='cancun' src={top6} height="140" width='100%' value='cancun' onClick={handleSearch} />
               <CardContent>
                 <Typography variant="h5" component="div">
-                  Visit { cityname && cityname[6] }
+                {t("ofer.vi")} { cityname && cityname[6] }
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Going from Buenos Aires
+                {t("ofer.desde")}
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
               <Typography variant="body2" className={s.rank}>
-                Global Rank   { cityRank && cityRank[6] }
+              {t("ofer.rank")}   { cityRank && cityRank[6] }
               </Typography>
             </CardActions>
             <div className={s.precio}>
 
-              <Typography variant='body2' className={s.texto}>Lowest Price</Typography>
+              <Typography variant='body2' className={s.texto}>{t("ofer.precio")}</Typography>
 
               <Typography color='green' variant="body1" className={s.texto}>
                 $500
@@ -272,21 +271,21 @@ export default function CardDestination() {
               <input type="image" alt='fort lauderdale' src={top7} height="140" width='100%' value='fort lauderdale' onClick={handleSearch} />
               <CardContent>
                 <Typography variant="h5" component="div" sx={{fontSize:'1.48rem'}} >
-                  Visit { cityname && cityname[7] }
+                {t("ofer.vi")} { cityname && cityname[7] }
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Going from Buenos Aires
+                {t("ofer.desde")}
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
               <Typography variant="body2" className={s.rank}>
-                Global Rank   { cityRank && cityRank[7] }
+              {t("ofer.rank")}   { cityRank && cityRank[7] }
               </Typography>
             </CardActions>
             <div className={s.precio}>
 
-              <Typography variant='body2' className={s.texto}>Lowest Price</Typography>
+              <Typography variant='body2' className={s.texto}>{t("ofer.precio")}</Typography>
 
               <Typography color='green' variant="body1" className={s.texto}>
                 $500

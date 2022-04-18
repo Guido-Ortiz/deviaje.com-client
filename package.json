@@ -11,6 +11,7 @@
     "@mui/icons-material": "^5.5.1",
     "@mui/lab": "^5.0.0-alpha.76",
     "@mui/material": "^5.5.3",
+    "@mui/x-date-pickers": "^5.0.0-alpha.1",
     "@stripe/react-stripe-js": "^1.7.0",
     "@stripe/stripe-js": "^1.26.0",
     "@testing-library/jest-dom": "^5.16.3",

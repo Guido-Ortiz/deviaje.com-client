@@ -6,7 +6,10 @@
     "nav": {
         "home": "Inicio",
         "about": "Acerca de nosotros",
-        "offers": "Ofertas"
+        "offers": "Ofertas",
+        "per": "Perfil",
+        "s": "Ajustes",
+        "l": "Cerrar sesion"
     },
     "searchBar": {
         "btn": "Buscar",
@@ -15,7 +18,8 @@
         "phSalida": "Ciudad de origen",
         "phDestino": "Ciudad de destino",
         "pasajeros": "Pasajeros",
-        "vuelos": "Vuelos"
+        "vuelos": "Vuelos",
+        "range": "Rango de fechas"
     },
     "carousel": {
         "top": "Destinos Top"
@@ -87,5 +91,99 @@
         "vuelta": "Vuelta",
         "escalas": "Directo"
 
-    }
+    },
+    "about": {
+        "quien": "Quienes somos?",
+        "texto": "Somos una compañia basada en Buenos Aires. Nuestra mision es conectar el mundo con cada persona. Queremos hacer que el viaje sea accesible para todos.",
+        "alianzas": "Alianzas"
+    },
+    "ofer": {
+        "vi": "Visita",
+        "desde": "Volando desde Buenos Aires",
+        "rank": "Ranking global",
+        "precio": "Precio mas bajo"
+    },
+    "stepper": {
+        "p1": "Selecciona un vuelo",
+        "p2": "Completa la informacion de los pasajeros",
+        "p3": "Paga"
+    },
+    "passengersInfo": {
+        "tit": "Ya casi estamos! Completa tus datos personales y segui con tu compra.",
+        "sub": "Quienes viajan?",
+        "n": "Nombre",
+        "ph": "Como aparece en el documento de viaje",
+        "a": "Apellido",
+        "p": "Pais de residencia",
+        "d": "Numero de documento de viaje",
+        "fecha": "Fecha de nacimiento",
+        "sig": "Siguiente",
+        "pasajero": "Pasajero",
+        "cont": "Continuar al pago"
+    },
+    "paymentDetail": {
+        "det": "Detalle de la compra",
+        "vuelo": "Vuelo",
+        "imp": "Impuestos"
+    },
+    "flightInfo": {
+        "det": "Detalles del vuelo",
+        "s": "SALIDA",
+        "v": "REGRESO",
+        "d": "Duracion"
+    },
+    "paymentForm": {
+        "tit": "Complete con los datos de la tarjeta",
+        "pag": "Ver opciones de pago",
+        "opc": "Opciones de pago",
+        "p": "Procesando...",
+        "pago": "Pagar",
+        "gracias": "Gracias!",
+        "pro": "Tu pago se proceso de manera correcta"
+    }, 
+    "bilingDetails": {
+        "n": "Nombre",
+        "e": "Email",
+        "a": "Direccion",
+        "c": "Ciudad",
+        "s": "Provincia",
+        "z": "CP"  
+    },
+    "userProfileForm": {
+        "per": "INFORMACION PERSONAL",
+        "doc": "DNI / Pasaporte",
+        "fecha": "Fecha de nacimiento",
+        "tel": "Numero de telefono",
+        "pais": "Seleccione un pais",
+        "estado": "Provincia",
+        "ciu": "Ciudad",
+        "cp": "CP",
+        "g": "Genero",
+        "f": "Femenino",
+        "m": "Masculino",
+        "v": "Vacunado",
+        "s": "Si",
+        "n": "No",
+        "btn": "Enviar"
+    },
+    "userProfile": {
+        "per": "Mi perfil",
+        "n": "Nombre",
+        "a": "Apellido",
+        "m": "Mail",
+        "u": "Nombre usuario",
+        "dni": "DNI / Pasaporte",
+        "t": "Numero de telefono"
+    },
+    "errorLanding": {
+        "dep": "Salida requerida",
+        "des": "Destino requerido",
+        "dist": "Origen y destino no pueden ser iguales",
+        "fe": "Fecha requerida",
+        "v": "Fecha de retorno requerida",
+        "d": "Retorno debe ser despues de la salidaReturn date must be after departure date"
+    },
+    "home": {
+        "modal": "No se encontraron vuelos"
+    }  
 }

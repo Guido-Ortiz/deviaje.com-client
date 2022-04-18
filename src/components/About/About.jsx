@@ -10,21 +10,22 @@ import img6 from './img/Avianca_logo_red.svg.png'
 import img7 from './img/Latam-logo_-v_(Indigo).svg.png'
 import img8 from './img/Lufthansa_Logo_2018.svg.png'
 import img9 from './img/Work-as-a-flight-attendant.webp'
+import { useTranslation } from 'react-i18next'
 
 export function About (){
+    const [t, i18n] = useTranslation('global')
     return(
         <div className={s.mainContainer}>
             <img className={s.imgHeader} src={header} alt="header" />
             
            <div className={s.container}>
            <div className={s.flex}>
-                <h2 className={s.title}>Who We Are</h2>
-                <p>We are a company based in Buenos Aires, our mission is to connect the world with every single person, 
-                    we aime to make travel accesible to everyone </p>
+                <h2 className={s.title}>{t("about.quien")}</h2>
+                <p>{t("about.texto")}</p>
                     <img className={s.image} src={img9} alt="flight attendance" />
             </div>
             <div className={s.flex}>
-                <h2 className={s.title}>Alliances</h2>
+                <h2 className={s.title}>{t("about.alianzas")}</h2>
                 <div className={s.logos}>
                 <img src={AA} alt="Logo" className={s.logos} />
                 <img src={img1} alt="Logo"  className={s.logos}/>

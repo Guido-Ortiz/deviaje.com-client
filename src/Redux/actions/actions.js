@@ -2,7 +2,86 @@ import { GET_FLIGHTS_INFO, GET_FLIGHTS_INFO_FROM, GET_INPUTS, FLIGHTS_NO_FOUND, 
        DATE_FILTER, PRICE_FILTER, AVAILABILITY_FILTER, TOP_DESTINATION, GET_PASSENGERS, SHOW_LOADING, CLEAR_STATES, GET_DATA, RESET_DATA, GET_RETURN, RESET_RETURN, GET_PASSENGERSINFO  } from "./constants";
 
 import { axiosWithOutToken } from '../../services/axios'
- 
+
+//german - vuelos de iva y vuelta -- con fecha exacta
+export const getFlightsInfoToFromExact = (payload) => {
+  
+  return  async (dispatch) => {
+    let fechaModificada = payload.dateFrom.split("-").reverse().join("/");
+    let fechaModificada2 = payload.dateTo.split("-").reverse().join("/");
+    
+    dispatch({
+      type:CLEAR_STATES
+    })
+
+    dispatch({
+      type: SHOW_LOADING
+    })
+    try {
+        const response = await axiosWithOutToken(
+            `/getflights?fly_from=${payload.fly_from}&fly_to=${payload.fly_to}&date_from=${fechaModificada}&date_to=${fechaModificada}&return_from=${fechaModificada2}&return_to=${fechaModificada2}`
+        )
+        if(response.data.status === 400 ){
+          return dispatch({
+            type: FLIGHTS_NO_FOUND,
+            payload: true,
+          });
+        }
+        return dispatch({
+            type: GET_FLIGHTS_INFO_FROM,
+            payload: response.data
+        });
+      } catch ( err ) {
+        console.log( err.response );
+        return dispatch({
+            type: FLIGHTS_NO_FOUND,
+            payload: true,
+        });
+      }
+    };
+};
+//german-fin
+
+//german- vuelos solo de ida-- con fecha exacta
+export const getFlightsInfoExact = (payload) => {
+  
+  return async (dispatch) => {
+    let fechaModificada = payload.dateFrom.split("-").reverse().join("/");
+   // let fechaModificada2 = payload.dateTo.split("-").reverse().join("/");
+
+    dispatch({
+      type:CLEAR_STATES
+    })
+    dispatch({
+      type: SHOW_LOADING
+    })
+    
+    try {
+        const response = await axiosWithOutToken(
+            `/getflights?fly_from=${payload.fly_from}&fly_to=${payload.fly_to}&date_from=${fechaModificada}&date_to=${fechaModificada}`
+        )
+        if(response.data.status === 400 ){
+          return dispatch({
+            type: FLIGHTS_NO_FOUND,
+            payload: true,
+          });
+        }
+        return dispatch({
+            type: GET_FLIGHTS_INFO,
+            payload: response.data,
+        });  
+    } catch ( err ) {
+        console.log( err.response );
+        return dispatch({
+            type: FLIGHTS_NO_FOUND,
+            payload: true,
+        });
+      }
+    };
+};
+
+//german-fin
+
 export const getFlightsInfo = (payload) => {
   
   return async (dispatch) => {
@@ -20,6 +99,12 @@ export const getFlightsInfo = (payload) => {
         const response = await axiosWithOutToken(
             `/getflights?fly_from=${payload.fly_from}&fly_to=${payload.fly_to}&date_from=${fechaModificada}&date_to=${fechaModificada2}`
         )
+        if(response.data.status === 400 ){
+          return dispatch({
+            type: FLIGHTS_NO_FOUND,
+            payload: true,
+          });
+        }
         return dispatch({
             type: GET_FLIGHTS_INFO,
             payload: response.data,
@@ -51,6 +136,12 @@ export const getFlightsInfoToFrom = (payload) => {
         const response = await axiosWithOutToken(
             `/getflights?fly_from=${payload.fly_from}&fly_to=${payload.fly_to}&date_from=${fechaModificada}&date_to=${fechaModificada2}&return_from=${fechaModificada}&return_to=${fechaModificada2}`
         )
+        if(response.data.status === 400 ){
+          return dispatch({
+            type: FLIGHTS_NO_FOUND,
+            payload: true,
+          });
+        }
         return dispatch({
             type: GET_FLIGHTS_INFO_FROM,
             payload: response.data
@@ -68,10 +159,6 @@ export const getFlightsInfoToFrom = (payload) => {
 export const topdestination = (payload) => {
   console.log('payload acion', payload)
   return async (dispatch) => {
-   
-    // const d = new Date().toISOString()
-    // const date = d.slice(0,10)
-    // const modDate = date.split('-').reverse().join('/')
     
     const modDateFrom = payload.dateFrom.split('-').reverse().join('/')
     const modDateTo = payload.dateTo.split('-').reverse().join('/')
@@ -87,13 +174,10 @@ export const topdestination = (payload) => {
        const response = await axiosWithOutToken(
         `/getflights?fly_from=${payload.fly_from}&fly_to=${payload.fly_to}&date_from=${modDateFrom}&date_to=${modDateTo}`
        )
-      //  const response = await axiosWithOutToken(
-      //       `/getflights?fly_from=buenos%20aires&fly_to=${payload}&date_from=${modDate}&date_to=29/04/2022`
-      //   )
-        return dispatch({
+      return dispatch({
             type: GET_FLIGHTS_INFO,
             payload: response.data,
-        });  
+      });  
     } catch ( err ) {
         console.log( err.response );
         return dispatch({

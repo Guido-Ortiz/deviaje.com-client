@@ -50,7 +50,6 @@ export default function reducer(state = initialState, action) {
       };
 
     case STOP_FILTER:
-      console.log(action.payload)
       if (action.payload.toFrom === false) {
         let filterStops = action.payload.value === 'direct' ? state.flights.data.filter(p => {
           return p.route.length === 1
@@ -104,22 +103,20 @@ export default function reducer(state = initialState, action) {
       }
 
     case PRICE_FILTER:
-          const filterPrice = action.payload && state.flights.data.filter(p =>  parseInt( (p.price * 1.8).toFixed() )  <= parseInt( action.payload ) )
+        const filterPrice = action.payload && state.flights.data.filter(p =>  parseInt( (p.price * 1.8).toFixed() )  <= parseInt( action.payload ) )
           
-          if(filterPrice.length === 0 ){
-            return{
-              ...state,
-              modalErr : true,
-              allFlights: filterPrice
-            }
-          }else{
-            return{
-              ...state,
-              allFlights: filterPrice,
-            }
+        if(filterPrice.length === 0 ){
+          return{
+            ...state,
+            modalErr : true,
+            allFlights: filterPrice
           }
-
-    
+        }else{
+          return{
+            ...state,
+            allFlights: filterPrice,
+          }
+        }
 
     case DATE_FILTER:
       const filterDate = action.payload === 'date' ? state.flights.data.sort((a, b) => (a.local_departure > b.local_departure ? 1 : -1)) : state.flights.sort((a, b) => (a.local_departure > b.local_departure ? -1 : 1))
@@ -127,13 +124,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         allFlights: filterDate,
       }
-    // case PRICE_FILTER:
-    //   const filterPrice = action.payload && state.flights.data.filter(p => (p.price * 1.8).toFixed() <= action.payload)
-    //   return {
-    //     ...state,
-    //     allFlights: filterPrice,
-    //   };
-
+    
     case AVAILABILITY_FILTER:
       const filterAvailability = action.payload && state.flights.data.filter(p => Object.values(p.availability)[0] <= action.payload)
 
@@ -145,7 +136,6 @@ export default function reducer(state = initialState, action) {
     case FLIGHTS_NO_FOUND:
       return {
         ...state,
-        // flights: [],
         allFlights: [],
         loading: false,
         modalErr: action.payload

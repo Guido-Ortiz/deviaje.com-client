@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import s from './FlightInfo.module.css';
 
@@ -20,17 +21,19 @@ function FlightInfo({ departure, arrival, date, cityD, cityA, timeD, timeA, dura
     
     const idaYvuelta = useSelector(state => state.dataInputs)
     const data = useSelector(state => state.return)
+
+    const [t, i18n] = useTranslation('global')
    
     return (
         <div className={s.grid}>
             {
                 idaYvuelta.toFrom === true ? 
                     <>
-                        <div className={s.payment}>Detail of the purchase</div>
+                        <div className={s.payment}>{t("flightInfo.det")}</div>
                         <div className={s.ciudades}>{departure} - {arrival}</div>
-                        <div className={s.salida}>DEPARTURE</div>
+                        <div className={s.salida}>{t("flightInfo.s")}</div>
                         <div className={s.fecha}>{fecha}</div>
-                        <div className={s.aerolinea}>aerolinea</div>
+                        {/* <div className={s.aerolinea}>aerolinea</div> */}
                         <div className={s.viaje}>
                             <div className={s.ciudad}>
                                 <div className={s.city}>{cityD}</div>
@@ -47,9 +50,9 @@ function FlightInfo({ departure, arrival, date, cityD, cityA, timeD, timeA, dura
                             </div> */}
                         </div>
                         {/* -------- SI TENGO VUELTA --------- */}
-                        <div className={s.salida}>RETURN</div>
+                        <div className={s.salida}>{t("flightInfo.v")}</div>
                         <div className={s.fecha}>{data[0].local_departure.slice(0, 10)}</div>
-                        <div className={s.aerolinea}>aerolinea</div>
+                        {/* <div className={s.aerolinea}>aerolinea</div> */}
                         <div className={s.viaje}>
                             <div className={s.ciudad}>
                                 <div className={s.city}>{cityA}</div>
@@ -68,11 +71,11 @@ function FlightInfo({ departure, arrival, date, cityD, cityA, timeD, timeA, dura
                     </>
                     :
                     <>
-                        <div className={s.payment}>Detail of the purchase</div>
+                        <div className={s.payment}>{t("flightInfo.det")}</div>
                         <div className={s.ciudades}>{departure} - {arrival}</div>
-                        <div className={s.salida}>DEPARTURE</div>
+                        <div className={s.salida}>{t("flightInfo.s")}</div>
                         <div className={s.fecha}>{fecha}</div>
-                        <div className={s.aerolinea}>aerolinea</div>
+                        {/* <div className={s.aerolinea}>aerolinea</div> */}
                         <div className={s.viaje}>
                             <div className={s.ciudad}>
                                 <div className={s.city}>{cityD}</div>
@@ -84,7 +87,7 @@ function FlightInfo({ departure, arrival, date, cityD, cityA, timeD, timeA, dura
                                 <div className={s.time}>{arrTime}</div>
                             </div>
                             <div className={s.ciudad}>
-                                <div className={s.city}>Duration</div>
+                                <div className={s.city}>{t("flightInfo.d")}</div>
                                 <div className={s.time}>{durationTime}</div>
                             </div>
                         </div>

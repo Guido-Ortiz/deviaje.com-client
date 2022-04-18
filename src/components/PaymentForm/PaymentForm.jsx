@@ -26,6 +26,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPassengers, resetData } from "../../Redux/actions/actions";
 import StepperHorizontal from '../Stepper/StepperHorizontal';
 import { useAuth0 } from "@auth0/auth0-react";
+import { useTranslation } from "react-i18next";
 
 const CardElementContainer = styled.div`
   height: 40px;
@@ -101,8 +102,8 @@ const PaymentForm = ({ price }) => {
       }    
       // await axiosWithOutToken('/passengersInfo', passengersInfo, 'POST')
       await swal({
-        title: "Thank you!",
-        text: "We have successfully processed your payment!",
+        title: t("paymentForm.gracias"),
+        text: t("paymentForm.pro"),
         icon: "success",
         button: "Close",
       });
@@ -163,17 +164,19 @@ const PaymentForm = ({ price }) => {
     p: 4,
   };
 
+  const [t, i18n] = useTranslation('global')
+
   return (
     <div>
       <StepperHorizontal step={2}/>
       <form onSubmit={handleFormSubmit}>
 
         <div className={s.grid}>
-          <div className={s.title}>Complete with the card information</div>
+          <div className={s.title}>{t("paymentForm.tit")}</div>
           <div>
             <Button onClick={handleOpen}>
               <CreditCardIcon />
-              Check payment options
+              {t("paymentForm.pag")}
             </Button>
             <Modal
               open={open}
@@ -183,7 +186,7 @@ const PaymentForm = ({ price }) => {
             >
               <Box sx={style}>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Payment options
+                {t("paymentForm.opc")}
                 </Typography>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                   <img src={visa} className={s.imagen} alt='imagen not found' />
@@ -215,7 +218,8 @@ const PaymentForm = ({ price }) => {
 
           <Row>
             <SubmitButton disabled={processing || !stripe}>
-              {processing ? "Processing..." : `Pay $${price}`}
+              {/* {processing ? "Processing..." : `Pay $${price}`} */}
+              {processing ? t("paymentForm.p") : t("paymentForm.pago")}
             </SubmitButton>
           </Row>
         </div>
