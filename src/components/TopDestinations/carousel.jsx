@@ -16,6 +16,7 @@ import Carousel from 'react-bootstrap/Carousel'
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import getCity from './helpers/getCity'
 import {useHistory} from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
    
 
 export  function TopDestination(){
@@ -105,6 +106,8 @@ export  function TopDestination(){
        history.push('/top')
    }
 
+   const [t, i18n] = useTranslation('global')
+
     return(
         <div className={s.mainContainer}>
               {/* {
@@ -112,7 +115,7 @@ export  function TopDestination(){
               } */}
              
             <div className={s.container}>
-                <h2 className={s.title}>Top Destinations</h2>
+                <h2 className={s.title}>{t("carousel.top")}</h2>
          <Carousel>
             <Carousel.Item>
                     <input type='image' value='istabul' name='istabul' className={s.slide} src={top} alt="Istabul" onClick={(e) => handleSearch(e)}/>
@@ -177,11 +180,11 @@ export  function TopDestination(){
         </Carousel>
             </div>
             <div className={s.container}>
-                <h2 className={s.title}>Offers you cannot wait</h2>
+                <h2 className={s.title}>{t("ofertas.ofertas")}</h2>
                 <img className={s.img} src={img} alt="Woman on computer" />
                 <div className={s.offers}>
-                    <p className={s.text}>If you have not yet defined your destination, you may be interested in seeing our offers section.</p>
-                    <Button onClick={buttonToOffersPage} size="small" variant="contained">View Offers</Button>
+                    <p className={s.text}>{t("ofertas.texto")}</p>
+                    <Button onClick={buttonToOffersPage} size="small" variant="contained">{t("ofertas.btn")}</Button>
                 </div>
             </div>
         </div>

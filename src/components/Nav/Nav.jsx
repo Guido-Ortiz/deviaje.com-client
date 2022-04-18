@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 
 import { axiosWithOutToken } from '../../services/axios'
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import es from './assets/es.png'
 
 const Nav = () => {
 
@@ -23,7 +25,7 @@ const Nav = () => {
     setAnchorEl(event.currentTarget);
   };
 
-
+  const [t, i18n] = useTranslation('global')
 
   const handleClose = () => {
     setAnchorEl(null)
@@ -55,18 +57,6 @@ const Nav = () => {
     }
   }, [user, isAuthenticated])
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     axiosWithOutToken('/postUser', user, 'post')
-  //       .then(res => {
-  //         console.log(res.data)
-  //       })
-  //       .catch(err => {
-  //         console.log(err)
-  //       })
-  //   }
-  // }, [isAuthenticated])
-
   return (
     <header className='header-container-general'>
       <div
@@ -89,9 +79,16 @@ const Nav = () => {
           </div>
 
           <div>
-            <NavLink activeClassName={styles.active} className={styles.link} to='/home'>Home</NavLink>
-            <NavLink activeClassName={styles.active} className={styles.link} to='/about'>About Us</NavLink>
-            <NavLink activeClassName={styles.active} className={styles.link} to='/top'>Offers</NavLink>
+            <NavLink activeClassName={styles.active} className={styles.link} to='/home'>{t("nav.home")}</NavLink>
+            <NavLink activeClassName={styles.active} className={styles.link} to='/about'>{t("nav.about")}</NavLink>
+            <NavLink activeClassName={styles.active} className={styles.link} to='/top'>{t("nav.offers")}</NavLink>
+          </div>
+
+          <div>
+            <button onClick={() => i18n.changeLanguage('es')}>
+              es
+            </button>
+            <button onClick={() => i18n.changeLanguage('en')}>EN</button>
           </div>
 
           <div className={styles.containerButton}>

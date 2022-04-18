@@ -12,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { useTranslation } from "react-i18next";
   
 function SearchBar() {
 
@@ -79,9 +80,11 @@ function SearchBar() {
     }
   }
 
+  const [t, i18n] = useTranslation('global')
+
   return (
     <div className={s.display}>
-      <div className={s.flights}>Flights</div>
+      <div className={s.flights}>{t("searchBar.vuelos")}</div>
         <FormControl>
           <RadioGroup
             className={s.radio}
@@ -91,13 +94,13 @@ function SearchBar() {
             value={toFrom.name}
             onChange={handleInputChangeRadio}
           >
-            <FormControlLabel value={true} control={<Radio />} label="Round trip" sx={{marginLeft:'10px'}}  />
-            <FormControlLabel value={false} control={<Radio />} label="One way" sx={{marginLeft:'1px'}} />
+            <FormControlLabel value={true} control={<Radio />} label={t("searchBar.vuelta")} sx={{marginLeft:'10px'}}  />
+            <FormControlLabel value={false} control={<Radio />} label={t("searchBar.ida")} sx={{marginLeft:'1px'}} />
           </RadioGroup>
         </FormControl>
         <input
           value={input.fly_from}
-          placeholder="Enter departure city"
+          placeholder={t("searchBar.phSalida")}
           onChange={handleInputChange}
           name="fly_from"
           className={s.input}
@@ -107,7 +110,7 @@ function SearchBar() {
         }
         <input
           value={input.fly_to}
-          placeholder="Enter destination city"
+          placeholder={t("searchBar.phDestino")}
           onChange={handleInputChange}
           name="fly_to"
           className={s.input}
@@ -145,7 +148,7 @@ function SearchBar() {
       </div>
 
       <div className={s.pass}>
-        <span className={s.placeh}>Passengers</span>
+        <span className={s.placeh}>{t("searchBar.pasajeros")}</span>
         <IconButton
             onClick={() => setPassenger(passenger - 1)}
             disabled={ passenger <= 1 ? true : false }
@@ -163,7 +166,7 @@ function SearchBar() {
 
       <button className={s.btn} type="submit" onClick={handleClick}>
         <SearchIcon />
-        Search
+        {t("searchBar.btn")}
       </button>
 
     </div>

@@ -4,6 +4,7 @@ import styles from './modalDetails.module.css'
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import LuggageIcon from '@mui/icons-material/Luggage';
 import WorkIcon from '@mui/icons-material/Work';
+import { useTranslation } from 'react-i18next';
 
 export const ModalDetails = ( { setShowDetails, idDetails } ) => {
 
@@ -24,6 +25,8 @@ export const ModalDetails = ( { setShowDetails, idDetails } ) => {
     return [hours, minutes]
   }
 
+  const [t, i18n] = useTranslation('global')
+
   return (
     <>
       <div className={styles.modal}>
@@ -43,7 +46,7 @@ export const ModalDetails = ( { setShowDetails, idDetails } ) => {
                   </div>
                   <div style={{display:'flex', flexDirection:'column', justifyContent: 'center', 
                               alignItems:'center', fontSize:'1.3rem', color:'#293441'}} >
-                    <h6>-- Duration --</h6>
+                    <h6>-- {t("modalDetails.duracion")} --</h6>
                     <h6 style={{color: '#131516'}}>{ getHours(getHoursStop(el.local_departure, el.local_arrival))[0] !== 0 && 
                         getHours(getHoursStop(el.local_departure, el.local_arrival))[0] + 'h '} 
                       { getHours(getHoursStop(el.local_departure, el.local_arrival))[1]}m </h6>
@@ -56,7 +59,7 @@ export const ModalDetails = ( { setShowDetails, idDetails } ) => {
                   </div>
                 </div>
                 <div className={styles.containerCategory}> 
-                  <h4 style={{marginBottom:'-1rem', color:'#0f161d',fontSize:'1.1rem'}} ><span style={{fontSize:'1rem', color:'#293441'}}>Class: </span>
+                  <h4 style={{marginBottom:'-1rem', color:'#0f161d',fontSize:'1.1rem'}} ><span style={{fontSize:'1rem', color:'#293441'}}>{t("modalDetails.clase")}: </span>
                       {el.fare_category === 'M' ? 'Economy' : el.fare_category === 'W' ? 'Economy Premiun' :
                       el.fare_category === 'C' ? 'Business' : el.fare_category === 'F' ? 'First Class' : 'Economy'}  </h4>
                 </div>
@@ -64,35 +67,35 @@ export const ModalDetails = ( { setShowDetails, idDetails } ) => {
             ))
           }
           <div className={styles.containerDurationFinal}> 
-            <h4><span style={{color:'#293441'}}>Duration final: </span>
+            <h4><span style={{color:'#293441'}}>{t("modalDetails.final")}: </span>
                 { getHours(idDetails.duration.total)[0] !== 0 && getHours(idDetails.duration.total)[0]+'h ' } 
                 { getHours(idDetails.duration.total)[1]}m </h4>  
           </div>
           <div className={styles.containerEquipaje}>
             <div className={styles.containerEquipajeFirst}>
-              <h4>Baggage</h4>
+              <h4>{t("modalDetails.equi")}</h4>
             </div>
             <div className={styles.containerEquipajeSecond}>
               <div style={{display: 'flex', marginBottom:'1.2rem'}} >
                 <ShoppingBagIcon style={{color:'#243c57', marginTop:'8px', marginRight:'10px' }} />
                 <div>
-                  <h4 className={styles.containerEquipajeSubTitle}>Includes a backpack or purse.</h4>
-                  <h5 className={styles.containerEquipajeSubTitleSecond}>Must fit under the front seat.</h5>
+                  <h4 className={styles.containerEquipajeSubTitle}>{t("modalDetails.inc")}</h4>
+                  <h5 className={styles.containerEquipajeSubTitleSecond}>{t("modalDetails.otra")}</h5>
                 </div>
               </div>
               <div style={{display: 'flex', marginBottom:'1.2rem'}}>
                 <WorkIcon style={{color:'#243c57', marginTop:'10px', marginRight:'10px' }} />
                 <div>
-                  <h4 className={styles.containerEquipajeSubTitle}>Includes hand luggage.</h4>
-                  <h5 className={styles.containerEquipajeSubTitleSecond}>Must fit in the overhead compartment of the plane.</h5>
+                  <h4 className={styles.containerEquipajeSubTitle}>{t("modalDetails.mano")}</h4>
+                  <h5 className={styles.containerEquipajeSubTitleSecond}>{t("modalDetails.text")}</h5>
                 </div>
               </div>
               <div style={{display: 'flex', marginBottom:'1.2rem'}}>
                 <LuggageIcon style={{color:'#243c57', marginTop:'20px', marginRight:'10px' }} />
                 <div>
-                  <h4 className={styles.containerEquipajeSubTitle}>Includes checked baggage.</h4>
-                  <h5 className={styles.containerEquipajeSubTitleSecond}>2 bags per adult.</h5>
-                  <h5 className={styles.containerEquipajeSubTitleSecond}>It is dispatched at the airport during Check-in.</h5>
+                  <h4 className={styles.containerEquipajeSubTitle}>{t("modalDetails.grande")}</h4>
+                  <h5 className={styles.containerEquipajeSubTitleSecond}>{t("modalDetails.t")}</h5>
+                  <h5 className={styles.containerEquipajeSubTitleSecond}>{t("modalDetails.t2")}</h5>
                 </div>
               </div>
             </div>

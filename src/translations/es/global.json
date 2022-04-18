@@ -1,0 +1,91 @@
+{
+    "header": {
+        "titulo": "Bienvenidos a",
+        "url": "deviaje.com"
+    },
+    "nav": {
+        "home": "Inicio",
+        "about": "Acerca de nosotros",
+        "offers": "Ofertas"
+    },
+    "searchBar": {
+        "btn": "Buscar",
+        "ida": "Ida",
+        "vuelta": "Ida y vuelta",
+        "phSalida": "Ciudad de origen",
+        "phDestino": "Ciudad de destino",
+        "pasajeros": "Pasajeros",
+        "vuelos": "Vuelos"
+    },
+    "carousel": {
+        "top": "Destinos Top"
+    },
+    "ofertas": {
+        "ofertas": "Ofertas que no pueden esperar",
+        "texto": "Si todavia no definiste tu destino, te puede interesar ver nuestra seccion de ofertas",
+        "btn": "Ver ofertas"
+    },
+    "footer": {
+        "abuso": "Reporte abuso",
+        "textoA": "Si pensas que esta web esta violando tus derechos, presenta tu queja",
+        "contacto": "Como contactar al equipo de soporte",
+        "textoC": "Para saber mas acerca de las funcionalidades de la plataforma, contactarse via mail a deviajepuntocom12@gmail.com",
+        "docs": "Documentacion",
+        "textoD": "Para obtener la documentacion de apoyo y prueba de pago, envie su consulta via mail a deviajepuntocom12@gmail.com",
+        "terminos": "Terminos y Condiciones",
+        "privacidad": "Politica de privacidad",
+        "cookie": "Consentimiento cookies",
+        "derechos": "© 2022 deviaje.com - Todos los derechos reservados"
+    },
+    "loading": {
+        "loading": "Cargando..."
+    },
+    "404": {
+        "texto": "Disculpas, no hay vuelos que coincidan con tu busqueda",
+        "btn": "Inicio"
+    },
+    "filter": {
+        "escalas": "Escalas",
+        "cero": "Directo",
+        "una": "1 Escala",
+        "dos": "2 Escalas o mas",
+        "orden": "Ordenamiento",
+        "proximos": "Proximos vuelos",
+        "precio": "Precio",
+        "dispo": "Disponibilidad"
+    },
+    "cardFrom": {
+        "departure": "Ida",
+        "directo": "Directo",
+        "precio": "Precio",
+        "imp": "Impuestos",
+        "final": "Precio final",
+        "btn": "Comprar",
+        "stops": "Escalas",
+        "alerta": "Oops!",
+        "alerta2": "Si deseas seguir con la compra, tenes que registrarte!"
+    },
+    "cardScaleDetails": {
+        "llegada": "Llegada a la ciudad de",
+        "hora": "Horario de llegada"
+    },
+    "modalDetails": {
+        "duracion": "Duracion",
+        "clase": "Clase",
+        "final": "Duracion total",
+        "equi": "Equipaje",
+        "inc": "Incluye mochila o bolso de mano.",
+        "otra": "Debe entrar debajo del asiento delantero.",
+        "mano": "Incluye carry on.",
+        "text": "Debe entrar en los compartimientos superiores del avion.",
+        "grande": "Incluye equipaje de bodega.",
+        "t": "2 valijas por adulto.",
+        "t2": "Son despachadas en el aeropuerto durante el check-in."
+    },
+    "cardFromTo": {
+        "ida": "Ida",
+        "vuelta": "Vuelta",
+        "escalas": "Directo"
+
+    }
+}

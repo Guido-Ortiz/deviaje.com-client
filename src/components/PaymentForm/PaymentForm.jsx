@@ -25,6 +25,7 @@ import swal from 'sweetalert';
 import { useDispatch, useSelector } from "react-redux";
 import { getPassengers, resetData } from "../../Redux/actions/actions";
 import StepperHorizontal from '../Stepper/StepperHorizontal';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const CardElementContainer = styled.div`
   height: 40px;
@@ -37,6 +38,8 @@ const CardElementContainer = styled.div`
 `;
 
 const PaymentForm = ({ price }) => {
+  const { user } = useAuth0()
+  console.log(user)
   const history = useHistory()
   const [processing, setProcessing] = useState(false);
   const [checkoutError, setCheckoutError] = useState();
@@ -65,7 +68,7 @@ const PaymentForm = ({ price }) => {
       }
     };
     
-    await axiosWithOutToken('/paymentForm', billingDetails, 'POST')
+    // await axiosWithOutToken('/paymentForm', billingDetails, 'POST')
     setProcessing(true);
 
     const cardElement = elements.getElement("card");
@@ -104,6 +107,14 @@ const PaymentForm = ({ price }) => {
         button: "Close",
       });
 
+      // dispatch(getPassengers(1))
+      // dispatch(resetData())
+      await axiosWithOutToken('/paymentForm', billingDetails, 'POST')
+      let data = user.email
+      console.log(data)
+      console.log(passengersInfo)
+      await axiosWithOutToken('/passengersInfo', { passengersInfo, data}, 'POST')
+      await axiosWithOutToken('/postClientDetails', { billingDetails, price}, 'POST')
       history.push('/')
       dispatch(getPassengers(1))
       dispatch(resetData())
