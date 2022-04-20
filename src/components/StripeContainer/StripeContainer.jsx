@@ -12,13 +12,14 @@ const stripePromise = loadStripe(PUBLIC_KEY)
 
 function StripeContainer() {
     const flights = useSelector(state => state.allFlights)
+    const pasa = useSelector(state => state.passengers)
     const {id} = useParams()
     const flight = flights?.filter(f => f.id === id)
     
     window.scrollTo(0, 0) // para llevar la ventana arriba
     return (
         <Elements stripe={stripePromise}>
-            <PaymentForm price={(flight[0].price * 1.8).toFixed()} />
+            <PaymentForm price={(pasa * flight[0].price * 1.8).toFixed()} />
         </Elements>
     );
 }

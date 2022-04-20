@@ -10,7 +10,7 @@ import styles from "./cardFromTo.module.css";
 import { useAuth0 } from '@auth0/auth0-react'
 import { useHistory } from "react-router-dom";
 import swal from 'sweetalert';
-import { getReturn, resetReturn } from '../../Redux/actions/actions';
+import { getReturn, resetData, resetReturn } from '../../Redux/actions/actions';
 import { useTranslation } from 'react-i18next';
 
 const CardFromTo = ({ handleDetails, f }) => {
@@ -28,6 +28,7 @@ const CardFromTo = ({ handleDetails, f }) => {
   const handleBuy = aux => {
     user && isAuthenticated ? history.push(aux) : swal(t("cardFrom.alerta"), t("cardFrom.alerta2"), "error")
     dispatch(getReturn(filterReturn))
+    dispatch(resetData())
   }
   
   const dispatch = useDispatch()
@@ -90,7 +91,7 @@ const CardFromTo = ({ handleDetails, f }) => {
                           <IoIosAirplane  style={{color:'#3e3f3f', fontSize:'1.5rem'}} />
                           <h4 style={{color:'#3e3f3f', fontSize:'1.35rem', fontFamily: 'Bebas Neue'}}>{t("cardFromTo.vuelta")}</h4>
                         </div>
-                        <h5 style={{color:'#535555', fontFamily: 'Bebas Neue', fontSize: '1rem'}}>{f.route[index].local_departure.slice(0, 10)}</h5>
+                        <h5 style={{color:'#535555', fontFamily: 'Bebas Neue', fontSize: '1.1rem'}}>{f.route[index].local_departure.slice(0, 10)}</h5>
                       </div>
                       <div className={styles.container_departure}>
                         <div style={{display: 'flex', flex:'40%'}}>

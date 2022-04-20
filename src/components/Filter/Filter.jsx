@@ -66,9 +66,9 @@ function Filter() {
                         defaultValue="direct"
                         name="radio-buttons-group"
                     >
-                        <FormControlLabel value="direct" control={<Radio />} label={t("filter.cero")} onClick={handlecheck} />
-                        <FormControlLabel value="1" control={<Radio />} label={t("filter.una")} onClick={handlecheck} />
-                        <FormControlLabel value="2" control={<Radio />} label={t("filter.dos")} onClick={handlecheck} />
+                        <FormControlLabel sx={{padding:'.5rem'}} value="direct" control={<Radio />} label={t("filter.cero")} onClick={handlecheck} />
+                        <FormControlLabel sx={{padding:'.5rem'}} value="1" control={<Radio />} label={t("filter.una")} onClick={handlecheck} />
+                        <FormControlLabel sx={{padding:'.5rem'}} value="2" control={<Radio />} label={t("filter.dos")} onClick={handlecheck} />
                     </RadioGroup>
                 </FormControl>
             </div>
@@ -82,7 +82,7 @@ function Filter() {
                         defaultValue=""
                         name="radio-buttons-group"
                     >
-                        <FormControlLabel value="date" control={<Radio />} label={t("filter.proximos")} onChange={handleDate} />
+                        <FormControlLabel sx={{padding:'.5rem'}} value="date" control={<Radio />} label={t("filter.proximos")} onChange={handleDate} />
 
                     </RadioGroup>
                 </FormControl>

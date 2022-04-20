@@ -19,7 +19,13 @@
         "phDestino": "Enter destination city",
         "pasajeros": "Passengers",
         "vuelos": "Flights",
-        "range": "Flight date range"
+        "range": "Flight date range",
+        "salida": "Departure city required",
+        "des": "Destination required",
+        "e": "Origin and destination cant be the same",
+        "f": "Date required",
+        "f2": "Return date required",
+        "f3": "Return date must be after departure date"
     },
     "carousel": {
         "top": "Top Destination"
@@ -123,8 +129,9 @@
     },
     "paymentDetail": {
         "det": "Payment detail",
-        "vuelo": "Flight",
-        "imp": "Taxes and fees"
+        "vuelo": "Flight (per passenger)",
+        "imp": "Taxes and fees (per passenger)",
+        "pasa": "passengers"
     },
     "flightInfo": {
         "det": "Flight details",

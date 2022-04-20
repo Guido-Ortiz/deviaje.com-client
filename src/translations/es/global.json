@@ -19,7 +19,13 @@
         "phDestino": "Ciudad de destino",
         "pasajeros": "Pasajeros",
         "vuelos": "Vuelos",
-        "range": "Rango de fechas"
+        "range": "Rango de fechas",
+        "salida": "Origen requerido",
+        "des": "Destino requerido",
+        "e": "Origen y destino no pueden ser iguales",
+        "f": "Fecha salida requerida",
+        "f2": "Fecha retorno requerida",
+        "f3": "Fecha retorno debe ser despues de la salida"
     },
     "carousel": {
         "top": "Destinos Top"
@@ -123,8 +129,9 @@
     },
     "paymentDetail": {
         "det": "Detalle de la compra",
-        "vuelo": "Vuelo",
-        "imp": "Impuestos"
+        "vuelo": "Vuelo (por pasajero)",
+        "imp": "Impuestos (por pasajero)",
+        "pasa": "pasajeros"
     },
     "flightInfo": {
         "det": "Detalles del vuelo",

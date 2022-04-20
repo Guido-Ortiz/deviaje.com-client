@@ -29,6 +29,7 @@
 .radio{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 40px;
     outline: none;
     border-radius: 6px;
@@ -118,4 +119,19 @@
 .placeh{
     color: gray;
     letter-spacing: 1px;
+}
+
+.checkbox{
+    /* position: absolute;
+    left: 9rem;
+    top:27.5rem; */
+    width:100%;
+    background-color: white;
+    color: #0c0c0c;
+    font-weight: 900;
+    font-size:1rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding:.5rem 2.3rem .5rem .5rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
 }

@@ -123,7 +123,7 @@ export function TopDestination() {
                 <img className={s.img} src={img} alt="Woman on computer" />
                 <div className={s.offers}>
                     <p className={s.text}>If you have not yet defined your destination, you may be interested in seeing our offers section.</p>
-                    <Button size="small" variant="contained">View Offers</Button>
+                    <Button size="small" variant="contained" >View Offers</Button>
                 </div>
             </div>
         </div>

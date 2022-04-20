@@ -1,5 +1,5 @@
 
-import React from 'react';
+import {React, useEffect} from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -7,12 +7,18 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
+import { axiosWithOutToken } from '../../services/axios'
 
 
 
 const UserProfile = () => {
     const { isAuthenticated, user } = useAuth0();
     const [t, i18n] = useTranslation('global')
+    const data = axiosWithOutToken('/getpersonalinfo', 'GET')
+   
+            
+    console.log(data)
+
     return (
         isAuthenticated  && (
             <div>
@@ -21,7 +27,9 @@ const UserProfile = () => {
                     <Typography variant="h4" align='center' gutterBottom component="div" sx={{ m: 2 }}>
                         {t("userProfile.per")}
                     </Typography>
-                    <Box component="form" sx={{ '& > :not(style)': { m: 1 }, display: 'grid', gap: 1, gridTemplateColumns: 'repeat(2, 1fr)', height: '70vh', width: '100vh' }} noValidate autoComplete="off"
+                    <Box component="form" 
+                    sx={{ '& > :not(style)': { m: 1 }, display: 'grid', gap: 1, gridTemplateColumns: 'repeat(2, 1fr)', height: '70vh', width: '100vh' }} 
+                    noValidate autoComplete="off"
                     >
                         <div>
                             <TextField
@@ -81,6 +89,71 @@ const UserProfile = () => {
                                 //value={}    
                                 variant="outlined"
                                 color='success' 
+                            />
+                        </div>
+
+                        <div>
+                            <TextField 
+                                disabled
+                                id='standard-required'
+                                label='Date of Birth'
+                                //value= {}
+                                variant='outlined'
+                                color='success'
+                            />
+                        </div>
+
+                        <div>
+                            <TextField 
+                                disabled
+                                id='standard-required'
+                                label='Country'
+                                //value= {}
+                                variant='outlined'
+                                color='success'
+                            />
+                        </div>
+
+                        <div>
+                            <TextField 
+                                disabled
+                                id='standard-required'
+                                label='State'
+                                //value= {}
+                                variant='outlined'
+                                color='success'
+                            />
+                        </div>
+
+                        <div>
+                            <TextField 
+                                disabled
+                                id='standard-required'
+                                label='City'
+                                //value= {}
+                                variant='outlined'
+                                color='success'
+                            />               
+                        </div>
+
+                        <div>
+                            <TextField 
+                                disabled
+                                id='standard-required'
+                                label='Gender'
+                                //value= {}
+                                variant='outlined'
+                                color='success'
+                            />
+                        </div>
+                        <div>
+                            <TextField 
+                                disabled
+                                id='standard-required'
+                                label='Vaccinated'
+                                //value= {}
+                                variant='outlined'
+                                color='success'
                             />
                         </div>
                     </Box>

@@ -30,7 +30,7 @@ flight = ()=> {
 }
 
 offer = () => {
-  const message = this.createChatBotMessage(<div><p>If you want to know more about our top offers, check them out</p><a href='http://localhost:3000/top'>here</a></div>)
+  const message = this.createChatBotMessage(<div><p>If you want to know more about our top offers, check them out</p><a href='https://deviaje-com.vercel.app/top'>here</a></div>)
   this.addMessageToState(message)
 }
 
@@ -50,7 +50,7 @@ handleHelp = () => {
 }
 
 handleAboutUs = () => {
-  const message = this.createChatBotMessage(<div><p>If you want to know more about us</p><a href='http://localhost:3000/about'>Click Here</a></div>) 
+  const message = this.createChatBotMessage(<div><p>If you want to know more about us</p><a href='https://deviaje-com.vercel.app/about'>Click Here</a></div>) 
   this.addMessageToState(message)
 }
 

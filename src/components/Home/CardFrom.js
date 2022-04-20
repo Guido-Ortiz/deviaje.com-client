@@ -5,21 +5,23 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Popup from 'reactjs-popup';
 import { IoIosAirplane } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./Home.module.css";
 import { useAuth0 } from '@auth0/auth0-react'
 import { useHistory } from "react-router-dom";
 import swal from 'sweetalert';
 import { useTranslation } from 'react-i18next';
+import { resetData } from '../../Redux/actions/actions';
 
 const CardFrom = ({ handleDetails, f }) => {
 
     const flights = useSelector((state) => state.allFlights);
     const { isAuthenticated, user } = useAuth0()
     const history = useHistory()
-
+    const dispatch = useDispatch()
     const handleBuy = aux => {
       user && isAuthenticated ? history.push(aux) : swal(t("cardFrom.alerta"), t("cardFrom.alerta2"), "error")
+      dispatch(resetData())
     }
     // console.log(i18n)
     const [t, i18n] = useTranslation('global')

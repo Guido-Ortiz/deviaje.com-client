@@ -55,6 +55,7 @@ export  function TopDestination(){
 
     
     const dispatch = useDispatch()
+    const check = false
 
     const handleSearch = (e) =>{  
         //setShowLoading(true)
@@ -73,7 +74,8 @@ export  function TopDestination(){
             fly_to: e.target.value,
             dateFrom: date,
             dateTo: '2022-04-29',
-            toFrom: toFrom.toFrom
+            toFrom: toFrom.toFrom,
+            check
         }
 
         dispatch(setValuesInputs( newInputValues ))
@@ -184,7 +186,7 @@ export  function TopDestination(){
                 <img className={s.img} src={img} alt="Woman on computer" />
                 <div className={s.offers}>
                     <p className={s.text}>{t("ofertas.texto")}</p>
-                    <Button onClick={buttonToOffersPage} size="small" variant="contained">{t("ofertas.btn")}</Button>
+                    <button onClick={buttonToOffersPage} className={s.btnOffers} >{t("ofertas.btn")}</button>
                 </div>
             </div>
         </div>

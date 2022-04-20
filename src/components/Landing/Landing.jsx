@@ -15,6 +15,7 @@ import { IconButton } from "@material-ui/core";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel';
+
 import FormControl from '@mui/material/FormControl';
 import { TopDestination } from "../TopDestinations/carousel";
 import Checkbox from '@mui/material/Checkbox';
@@ -25,20 +26,26 @@ function Landing() {
   function validate(input){
     let errors = {}
     if(!input.fly_from){
-        errors.fly_from = "Departure city required"
+        // errors.fly_from = "Departure city required"
+        errors.fly_from = t("searchBar.salida")
     }
     if(!input.fly_to){
-        errors.fly_to = "Destination required"
+        // errors.fly_to = "Destination required"
+        errors.fly_to = t("searchBar.des")
     } else if(input.fly_to.toLowerCase() === input.fly_from.toLowerCase()){
-        errors.fly_to = "Origin and destination cant be the same"
+        // errors.fly_to = "Origin and destination cant be the same"
+        errors.fly_to = t("searchBar.e")
     }
     if(!input.dateFrom){
-        errors.dateFrom = "Date required"
+        // errors.dateFrom = "Date required"
+        errors.dateFrom = t("searchBar.f")
     }
     if(!input.dateTo && (toFrom.name || check)){
-        errors.dateTo = "Return date required"
+        // errors.dateTo = "Return date required"
+        errors.dateTo = t("searchBar.f2")
     } else if(Date.parse(input.dateTo) < Date.parse(input.dateFrom)){
-        errors.dateTo = "Return date must be after departure date"
+        // errors.dateTo = "Return date must be after departure date"
+        errors.dateTo = t("searchBar.f3")
     }
     return errors
 }
@@ -101,7 +108,8 @@ function Landing() {
         dateFrom: input.dateFrom,
         dateTo: input.dateTo,
         toFrom: toFrom.name,
-        pass
+        pass,
+        check
     }
     dispatch(setValuesInputs(newInput))
     dispatch(getPassengers(pass))
@@ -157,8 +165,8 @@ function Landing() {
                 defaultValue={ true }
                 onChange={handleInputChangeRadio}
               >
-                <FormControlLabel value={true} control={<Radio />} label={t("searchBar.vuelta")} sx={{ marginLeft: '.5rem', marginTop: '7px'}} />
-                <FormControlLabel value={false} control={<Radio />} label={t("searchBar.ida")} sx={{ marginLeft: '8rem', marginTop: '-54px' }} />
+                <FormControlLabel value={true} control={<Radio />} label ={<span style={{display:'flex', width:'75px', fontSize:'15.5px'}} >{t("searchBar.vuelta")}</span>} sx={{marginLeft: '.15rem', marginTop: '.8rem'}} />
+                <FormControlLabel value={false} control={<Radio />} label={<span style={{display:'flex', width:'75px', fontSize:'15.5px'}} >{t("searchBar.ida")}</span>} sx={{marginLeft: '6.5rem', marginTop: '-48px' }} />
               </RadioGroup>
             </FormControl>
             <div className={s.boxErrors}>
@@ -249,35 +257,6 @@ function Landing() {
           </div>
 
           <FormControlLabel className={s.checkbox} control={<Checkbox onChange={ handleChangeCheck } />} label={t("searchBar.range")} />
-
-          {/* <div className={s.pass}>
-            <span className={s.placeh}>{t("searchBar.pasajeros")}</span>
-            <IconButton
-              onClick={() => setPass(pass - 1)}
-              disabled={ pass <= 1 ? true : false }
-            >
-              <RemoveIcon  sx={{ cursor: 'pointer' }} />
-            </IconButton>
-              {pass}
-            <IconButton
-              onClick={() => setPass(pass + 1)}
-              disabled={ pass >= 6 ? true : false }
-            >
-              <AddIcon  sx={{ cursor:'pointer' }} />
-            </IconButton>
-          </div> */}
-
-          {/* {
-            Object.keys(errors).length === 0 && input.fly_to && input.fly_from && input.dateFrom && input.dateTo ?
-              (<button className={s.btn} type="submit" onClick={e => handleClick(e)}>
-                <SearchIcon />
-                Search
-              </button>)
-              : <button className={s.btn} type="submit" onClick={e => handleClick(e)} disabled>
-                <SearchIcon />
-                {t("searchBar.btn")}
-              </button>
-          } */}
 
         </div> 
       </div>

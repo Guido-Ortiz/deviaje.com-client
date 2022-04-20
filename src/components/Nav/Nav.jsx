@@ -109,6 +109,7 @@ const Nav = () => {
                   <img className={styles.imgLogin} src={user.picture} alt='' />
                 </Button>
                 <Menu
+                  style={{marginLeft:'-12px'}} 
                   id='basic-menu'
                   anchorEl={anchorEl}
                   open={open}
@@ -117,9 +118,9 @@ const Nav = () => {
                     'aria-labelledby': 'basic-button'
                   }}
                 >
-                  <MenuItem onClick={handleProfile}>{t("nav.per")}</MenuItem>
-                  <MenuItem onClick={handleForm}>{t("nav.s")}</MenuItem>
-                  <MenuItem onClick={handleClickLogout}>{t("nav.l")}</MenuItem>
+                  <MenuItem style={{display: 'flex', flexDirection:'column', padding:'.5rem 1rem'}} onClick={handleProfile}>{t("nav.per")}</MenuItem>
+                  <MenuItem style={{display: 'flex', flexDirection:'column', padding:'.5rem 1rem'}} onClick={handleForm}>{t("nav.s")}</MenuItem>
+                  <MenuItem style={{display: 'flex', flexDirection:'column', padding:'.5rem 1rem'}} onClick={handleClickLogout}>{t("nav.l")}</MenuItem>
                 </Menu>
               </div>
             ) : (

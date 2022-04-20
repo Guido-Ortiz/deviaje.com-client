@@ -98,4 +98,23 @@ left: 5px;
     flex-wrap: wrap;
 }
 
+.btnOffers{
+    padding: 7px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1348a3;
+    color: #E5E7E9;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.btnOffers:active{
+    transform: scale(.99);
+}
+
+.btnOffers:hover{
+    background-color: #1f56b6;
+}
+
 
