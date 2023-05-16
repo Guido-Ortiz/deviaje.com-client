@@ -21,8 +21,6 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import swal from 'sweetalert';
 import { useTranslation } from 'react-i18next';
 
-
-
 const UserProfileForm = () => {
   const { isAuthenticated, user } = useAuth0();
   const [form, setForm] = useState({
@@ -36,7 +34,6 @@ const UserProfileForm = () => {
     genre: '',
     vaccinated: ''
   })
-  //const dispatch = useDispatch();
 
   const [dniError, setDniError] = useState(false);
   const [dniErrorMsg, setDniErrorMsg] = useState('');
@@ -106,11 +103,11 @@ const UserProfileForm = () => {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    //console.log(form)
+    
     let {email} = user
     axiosWithOutToken('/updatepersonalinfo', {...form, email}, 'POST')
       .then(res => {
-        console.log(res.data)
+        
         setForm({
           dni: '',
           age: '',

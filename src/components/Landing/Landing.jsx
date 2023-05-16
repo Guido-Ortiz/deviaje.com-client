@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { getFlightsInfo, setValuesInputs, getFlightsInfoToFrom, 
   getFlightsInfoExact, getFlightsInfoToFromExact, getPassengers } from "../../Redux/actions/actions";
 import s from "./Landing.module.css";
-//import validate from './utils/validate';
 import { Modal } from '../../components/modal/index'
 import { Loading } from "../loading/Loading";
 import AddIcon from '@mui/icons-material/Add';

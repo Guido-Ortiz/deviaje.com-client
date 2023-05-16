@@ -33,7 +33,7 @@ function FlightInfo({ departure, arrival, date, cityD, cityA, timeD, timeA, dura
                         <div className={s.ciudades}>{departure} - {arrival}</div>
                         <div className={s.salida}>{t("flightInfo.s")}</div>
                         <div className={s.fecha}>{fecha}</div>
-                        {/* <div className={s.aerolinea}>aerolinea</div> */}
+                        
                         <div className={s.viaje}>
                             <div className={s.ciudad}>
                                 <div className={s.city}>{cityD}</div>
@@ -44,15 +44,12 @@ function FlightInfo({ departure, arrival, date, cityD, cityA, timeD, timeA, dura
                                 <div className={s.city}>{cityA}</div>
                                 <div className={s.time}>{arrTime}</div>
                             </div>
-                            {/* <div className={s.ciudad}>
-                                <div className={s.city}>Duration</div>
-                                <div className={s.time}>{durationTime}</div>
-                            </div> */}
+                      
                         </div>
                         {/* -------- SI TENGO VUELTA --------- */}
                         <div className={s.salida}>{t("flightInfo.v")}</div>
                         <div className={s.fecha}>{data[0].local_departure.slice(0, 10)}</div>
-                        {/* <div className={s.aerolinea}>aerolinea</div> */}
+                        
                         <div className={s.viaje}>
                             <div className={s.ciudad}>
                                 <div className={s.city}>{cityA}</div>
@@ -63,10 +60,7 @@ function FlightInfo({ departure, arrival, date, cityD, cityA, timeD, timeA, dura
                                 <div className={s.city}>{cityD}</div>
                                 <div className={s.time}>{data[0].local_arrival.slice(11, 16)}</div>
                             </div>
-                            {/* <div className={s.ciudad}>
-                                <div className={s.city}>Duration</div>
-                                <div className={s.time}>{durationTimeReturn}</div>
-                            </div> */}
+                    
                         </div>
                     </>
                     :
@@ -75,7 +69,7 @@ function FlightInfo({ departure, arrival, date, cityD, cityA, timeD, timeA, dura
                         <div className={s.ciudades}>{departure} - {arrival}</div>
                         <div className={s.salida}>{t("flightInfo.s")}</div>
                         <div className={s.fecha}>{fecha}</div>
-                        {/* <div className={s.aerolinea}>aerolinea</div> */}
+    
                         <div className={s.viaje}>
                             <div className={s.ciudad}>
                                 <div className={s.city}>{cityD}</div>

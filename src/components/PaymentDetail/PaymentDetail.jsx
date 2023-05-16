@@ -6,7 +6,7 @@ import s from './PaymentDetail.module.css';
 function PaymentDetail({ price }) {
     const [t, i18n] = useTranslation('global')
     const passengers = useSelector(state => state.passengers)
-    console.log(passengers)
+    
     return (
         <div className={s.paymentGrid}>
             <div className={s.payment}>{t("paymentDetail.det")}</div>

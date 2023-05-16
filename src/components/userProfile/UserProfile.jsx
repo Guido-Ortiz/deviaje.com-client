@@ -1,5 +1,5 @@
 
-import {React, useEffect} from 'react';
+import {React, useEffect, useState} from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -11,12 +11,16 @@ import { axiosWithOutToken } from '../../services/axios'
 
 
 
-const UserProfile = async () => {
+const UserProfile = () => {
     const { isAuthenticated, user } = useAuth0();
+    //console.log(user)
     const [t, i18n] = useTranslation('global')
-    const data = await axiosWithOutToken('/getpersonalinfo', 'GET')
-   
-            
+    // const data = axiosWithOutToken('/getpersonalinfo', 'GET')
+    const [data, SetData] = useState({})
+    useEffect(()=>{
+        axiosWithOutToken('/getpersonalinfo', {mail: user.email} , 'POST')
+        .then(r=>SetData(r.data))
+    }, [])
     console.log(data)
 
     return (

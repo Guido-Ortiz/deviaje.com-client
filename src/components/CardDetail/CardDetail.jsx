@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import styles from "./CardDetail.module.css";
 
 function CardDetail(props) {
-  const { cityfrom, cityTo, local_departure, price, currency } = props;
+  const { local_departure, price } = props;
   return (
     <>
       <div className={styles.cardDetail}>

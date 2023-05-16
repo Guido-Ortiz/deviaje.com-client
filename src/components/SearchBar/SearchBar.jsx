@@ -5,7 +5,7 @@ import s from "./SearchBar.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getFlightsInfo, getFlightsInfoToFrom, getFlightsInfoToFromExact, getFlightsInfoExact,
         setValuesInputs, getPassengers } from "../../Redux/actions/actions";
-//import validate from '../Landing/utils/validate'
+
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -91,7 +91,7 @@ function SearchBar() {
     setPassenger( passengers )
     setCheck(dataInputs.check)
   },[])
-  console.log(check)
+  
   const handleClick = (e) => {
     e.preventDefault();
     setError( validate( input ))

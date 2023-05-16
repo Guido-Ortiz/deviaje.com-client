@@ -72,7 +72,6 @@ body{
     transform: translateY(-50%);
     border-left: 3px solid #0a66c2;
     margin-left: 40px;
-    /* background-color: rgba(121, 114, 114, 0.54); */
     background-color: rgba(133, 161, 187, 0.54);
     display: flex;
     flex-direction: row;

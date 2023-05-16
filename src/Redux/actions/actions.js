@@ -3,7 +3,6 @@ import { GET_FLIGHTS_INFO, GET_FLIGHTS_INFO_FROM, GET_INPUTS, FLIGHTS_NO_FOUND, 
 
 import { axiosWithOutToken } from '../../services/axios'
 
-//german - vuelos de iva y vuelta -- con fecha exacta
 export const getFlightsInfoToFromExact = (payload) => {
   
   return  async (dispatch) => {
@@ -40,14 +39,11 @@ export const getFlightsInfoToFromExact = (payload) => {
       }
     };
 };
-//german-fin
 
-//german- vuelos solo de ida-- con fecha exacta
 export const getFlightsInfoExact = (payload) => {
   
   return async (dispatch) => {
     let fechaModificada = payload.dateFrom.split("-").reverse().join("/");
-   // let fechaModificada2 = payload.dateTo.split("-").reverse().join("/");
 
     dispatch({
       type:CLEAR_STATES
@@ -79,8 +75,6 @@ export const getFlightsInfoExact = (payload) => {
       }
     };
 };
-
-//german-fin
 
 export const getFlightsInfo = (payload) => {
   
@@ -157,7 +151,7 @@ export const getFlightsInfoToFrom = (payload) => {
 };
 
 export const topdestination = (payload) => {
-  console.log('payload acion', payload)
+  
   return async (dispatch) => {
     
     const modDateFrom = payload.dateFrom.split('-').reverse().join('/')
