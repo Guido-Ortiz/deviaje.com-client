@@ -69,6 +69,7 @@ const PaymentForm = ({ price }) => {
       },
     };
 
+    // await axiosWithOutToken('/paymentForm', billingDetails, 'POST')
     setProcessing(true);
 
     const cardElement = elements.getElement("card");
@@ -110,9 +111,12 @@ const PaymentForm = ({ price }) => {
         button: "Close",
       });
 
+      // dispatch(getPassengers(1))
+      // dispatch(resetData())
       await axiosWithOutToken("/paymentForm", billingDetails, "POST");
       let data = user.email;
-
+      console.log(data);
+      console.log(passengersInfo);
       await axiosWithOutToken(
         "/passengersInfo",
         { passengersInfo, data },
