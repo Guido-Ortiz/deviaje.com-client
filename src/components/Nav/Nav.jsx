@@ -8,8 +8,6 @@ import styles from "./Nav.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
-//import axios from 'axios'
-
 import { axiosWithOutToken } from '../../services/axios'
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -124,7 +122,7 @@ const Nav = () => {
                 </Menu>
               </div>
             ) : (
-              <Button variant='outlined' onClick={() => loginWithPopup()}>
+              <Button style={{borderRadius:'5px', padding:'.5rem'}} variant='outlined' onClick={() => loginWithPopup()}>
                 Log In / Register
               </Button>
             )}

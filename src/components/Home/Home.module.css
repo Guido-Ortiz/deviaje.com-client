@@ -6,6 +6,7 @@
   margin-top: 2.35rem;
   margin-bottom: 1.8rem;
   border-radius: 1rem;
+
 }
 
 .home {
@@ -39,7 +40,14 @@
   display: flex;
   flex-direction: row;
   justify-items: flex-start;
-  background-color: #bacfd8;
+  height: 100%;
+  /* background-color: #bacfd8; */
+  background-image: url('../Landing/assets/fondo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed; 
+  
 }
 
 .containerSearch{    
@@ -122,9 +130,6 @@
   font-size:1.8rem;
 }
 .priceSimbol{
-  /* position: absolute;
-  top:40px;
-  right:70px; */
   font-family: 'Roboto Mono', monospace;
   color:#111010;
   font-size:1.2rem;

@@ -40,7 +40,7 @@ const CardElementContainer = styled.div`
 
 const PaymentForm = ({ price }) => {
   const { user } = useAuth0()
-  console.log(user)
+  
   const history = useHistory()
   const [processing, setProcessing] = useState(false);
   const [checkoutError, setCheckoutError] = useState();
@@ -69,13 +69,14 @@ const PaymentForm = ({ price }) => {
       }
     };
     
-    // await axiosWithOutToken('/paymentForm', billingDetails, 'POST')
     setProcessing(true);
 
     const cardElement = elements.getElement("card");
 
     try {
-      const { data: clientSecret } = await axios.post("https://deviaje.herokuapp/payment", {
+
+      const { data: clientSecret } = await axios.post("https://viajes.fly.dev/payment", {
+
         amount: price * 100
       });
 
@@ -100,7 +101,7 @@ const PaymentForm = ({ price }) => {
         setProcessing(false);
         return;
       }    
-      // await axiosWithOutToken('/passengersInfo', passengersInfo, 'POST')
+      
       await swal({
         title: t("paymentForm.gracias"),
         text: t("paymentForm.pro"),
@@ -108,12 +109,9 @@ const PaymentForm = ({ price }) => {
         button: "Close",
       });
 
-      // dispatch(getPassengers(1))
-      // dispatch(resetData())
       await axiosWithOutToken('/paymentForm', billingDetails, 'POST')
       let data = user.email
-      console.log(data)
-      console.log(passengersInfo)
+      
       await axiosWithOutToken('/passengersInfo', { passengersInfo, data}, 'POST')
       await axiosWithOutToken('/postClientDetails', { billingDetails, price}, 'POST')
       history.push('/')
@@ -218,7 +216,6 @@ const PaymentForm = ({ price }) => {
 
           <Row>
             <SubmitButton disabled={processing || !stripe}>
-              {/* {processing ? "Processing..." : `Pay $${price}`} */}
               {processing ? t("paymentForm.p") : t("paymentForm.pago")}
             </SubmitButton>
           </Row>

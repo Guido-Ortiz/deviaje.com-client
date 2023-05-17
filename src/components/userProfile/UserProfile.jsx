@@ -1,5 +1,5 @@
 
-import {React, useEffect} from 'react';
+import {React, useEffect, useState} from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -13,10 +13,14 @@ import { axiosWithOutToken } from '../../services/axios'
 
 const UserProfile = () => {
     const { isAuthenticated, user } = useAuth0();
+    //console.log(user)
     const [t, i18n] = useTranslation('global')
-    const data = axiosWithOutToken('/getpersonalinfo', 'GET')
-   
-            
+    // const data = axiosWithOutToken('/getpersonalinfo', 'GET')
+    const [data, SetData] = useState({})
+    useEffect(()=>{
+        axiosWithOutToken('/getpersonalinfo', {mail: user.email} , 'POST')
+        .then(r=>SetData(r.data))
+    }, [])
     console.log(data)
 
     return (
@@ -28,7 +32,7 @@ const UserProfile = () => {
                         {t("userProfile.per")}
                     </Typography>
                     <Box component="form" 
-                    sx={{ '& > :not(style)': { m: 1 }, display: 'grid', gap: 1, gridTemplateColumns: 'repeat(2, 1fr)', height: '70vh', width: '100vh' }} 
+                    sx={{ '& > :not(style)': { m: 1 }, display: 'grid', gap: 1, gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows:' repeat(3, 1fr)', gridColumnGap: '8px', gridRowGap: '36px', height: '70vh', width: '100vh' }} 
                     noValidate autoComplete="off"
                     >
                         <div>
@@ -76,7 +80,7 @@ const UserProfile = () => {
                                 disabled                                
                                 id="standard-required"
                                 label={t("userProfile.dni")}
-                                //value={}    
+                                value={data?.dni ? data.dni : 'Sin completar'}    
                                 variant="outlined"
                                 color='success' 
                             />
@@ -86,7 +90,7 @@ const UserProfile = () => {
                                 disabled                                
                                 id="standard-required"
                                 label={t("userProfile.t")}
-                                //value={}    
+                                value={data?.phonenumber ? data.phonenumber : 'Sin completar'}    
                                 variant="outlined"
                                 color='success' 
                             />
@@ -97,7 +101,7 @@ const UserProfile = () => {
                                 disabled
                                 id='standard-required'
                                 label='Date of Birth'
-                                //value= {}
+                                value= {data?.birthday ? data.birthday : 'Sin completar'}
                                 variant='outlined'
                                 color='success'
                             />
@@ -108,7 +112,7 @@ const UserProfile = () => {
                                 disabled
                                 id='standard-required'
                                 label='Country'
-                                //value= {}
+                                value= {data?.country ? data.country : 'Sin completar'}
                                 variant='outlined'
                                 color='success'
                             />
@@ -119,7 +123,7 @@ const UserProfile = () => {
                                 disabled
                                 id='standard-required'
                                 label='State'
-                                //value= {}
+                                value= {data?.state ? data.state : 'Sin completar'}
                                 variant='outlined'
                                 color='success'
                             />
@@ -130,7 +134,7 @@ const UserProfile = () => {
                                 disabled
                                 id='standard-required'
                                 label='City'
-                                //value= {}
+                                value= {data?.city ? data.city : 'Sin completar'}
                                 variant='outlined'
                                 color='success'
                             />               
@@ -141,7 +145,7 @@ const UserProfile = () => {
                                 disabled
                                 id='standard-required'
                                 label='Gender'
-                                //value= {}
+                                value= {data?.gender ? data.gender : 'Sin completar'}
                                 variant='outlined'
                                 color='success'
                             />
@@ -151,7 +155,7 @@ const UserProfile = () => {
                                 disabled
                                 id='standard-required'
                                 label='Vaccinated'
-                                //value= {}
+                                value= {data?.vacinated ? data.vaccinated : 'Sin completar'}
                                 variant='outlined'
                                 color='success'
                             />

@@ -23,7 +23,6 @@ export default function CardDestination() {
   const dispatch = useDispatch()
   const history = useHistory()
   const cities = useSelector(state => state.destination)
-  console.log(cities)
 
   const toFrom = {}
   toFrom.toFrom =  false
@@ -51,10 +50,10 @@ export default function CardDestination() {
             fly_to: e.target.value,
             dateFrom: date,
             dateTo: '2022-04-29',
-            toFrom: toFrom.toFrom
+            toFrom: toFrom.toFrom,
+            check: false
     }
     dispatch(setValuesInputs( newInputValues ))
-    // dispatch(topdestination(e.target.value))
     dispatch(topdestination( inputValues ))
     history.push('/home')
   }
@@ -298,46 +297,6 @@ export default function CardDestination() {
         </div>
 
       }
-      {/*            
-          //   cities.data.map((p, i) => {
-          //     return(
-          //       <div key={p.id} style={{margin: '1rem', display:'inline-flex', position:'relative', left:'1.8rem'}}>
-          //       <Card sx={{ maxWidth: 250, height:360 }}>
-          //      <NavLink style={{textDecoration:'none'}} to='/home'>
-          //   <CardActionArea>
-          //     <input type="image" src={img} height="140" width='100%' value={p.name} onClick={handleSearch} />
-          //     <CardContent>
-          //       <Typography variant="h5" component="div">
-          //      Visit {p.name}
-          //       </Typography>
-          //       <Typography variant="body2" color="text.secondary">
-          //         Starting from Buenos Aires
-          //       </Typography>
-          //     </CardContent>
-          //   </CardActionArea>
-          //   </NavLink>
-          //   <CardActions>
-          //   <Typography variant="body2" className={s.rank}>
-          //     Global Rank   {p.global_rank_dst}
-          //       </Typography>
-          //   </CardActions>
-          //     <div className={s.precio}>
-               
-          //       <Typography variant='body2' className={s.texto}>Lowest Price</Typography>
-               
-          //       <Typography color='green' variant="body1" className={s.texto}>
-          //       $500
-          //       </Typography>
-               
-          //     </div>
-           
-          // </Card>
-          
-          //     </div>
-          //     )
-          //   })
-            */}
-
 
     </div>
 

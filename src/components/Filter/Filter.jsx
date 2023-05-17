@@ -12,7 +12,6 @@ import { useTranslation } from 'react-i18next';
 
 function Filter() {
 
-    // const flights = useSelector(state => state.allFlights)
     const [price, setPrice] = useState('')
     const [availability, setAvailability] = useState('')
 
@@ -22,7 +21,6 @@ function Filter() {
     const handlecheck = (e) => {
         if (e.target.checked) {
             const check = { toFrom, value: e.target.value }
-            //dispatch(stopsFilter(e.target.value))
             dispatch(stopsFilter(check))
         }
     }
@@ -93,12 +91,12 @@ function Filter() {
                 <FormLabel className={s.title} id="demo-radio-buttons-group-label">{t("filter.precio")}</FormLabel>
                 <div className={s.flex}>
                     <div>
-                        <span className={s.padding} >USD 50</span>
+                        <span className={s.padding} >50</span>
                     </div>
                     <div>
                         <span className={s.price}>{price}</span>
                         <input className={s.range} type="range" min='50' max='5000' name='price' value={price} onChange={handleInputPrice} />
-                        <span className={s.padding}>USD 5.000</span>
+                        <span className={s.padding}>5.000</span>
                     </div>
                 </div>
             </div>
