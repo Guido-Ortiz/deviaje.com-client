@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { Auth0Provider } from '@auth0/auth0-react'
 import { I18nextProvider } from 'react-i18next';
 import i18next from 'i18next';
-// axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3000';
+// axios.defaults.baseURL = process.env.REACT_APP_API;
 
 import global_es from './translations/es/global.json';
 import global_en from './translations/en/global.json';
