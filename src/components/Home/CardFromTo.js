@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { Link } from "react-router-dom";
+import React from 'react';
 import { CardScaleDetails } from "./CardScaleDetails";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -10,7 +9,7 @@ import styles from "./cardFromTo.module.css";
 import { useAuth0 } from '@auth0/auth0-react'
 import { useHistory } from "react-router-dom";
 import swal from 'sweetalert';
-import { getReturn, resetData, resetReturn } from '../../Redux/actions/actions';
+import { getReturn, resetData } from '../../Redux/actions/actions';
 import { useTranslation } from 'react-i18next';
 
 const CardFromTo = ({ handleDetails, f }) => {

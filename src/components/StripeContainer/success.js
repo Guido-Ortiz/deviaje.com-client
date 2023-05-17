@@ -1,9 +1,6 @@
 import styled from "@emotion/styled";
 import { useState, useEffect } from "react";
 
-// import Layout from "../components/Layout";
-// import Row from "../components/prebuilt/Row";
-
 const Container = styled.div`
   width: 475px;
   margin: 30px auto 0 auto;

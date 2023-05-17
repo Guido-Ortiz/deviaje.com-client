@@ -95,8 +95,8 @@ function SearchBar() {
     setToFrom((state) => ({ ...state, name: dataInputs.toFrom }));
     setPassenger(passengers);
     setCheck(dataInputs.check);
-  }, [dataInputs, passengers]);
-  //console.log(check);
+  }, []);
+  console.log(check);
   const handleClick = (e) => {
     e.preventDefault();
     setError(validate(input));

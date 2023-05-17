@@ -111,7 +111,6 @@
     color: black;
     height: 40px;
     border-radius: 6px;
-    /* margin-left: 10px; */
     padding: 5px 15px;
     margin: 1.2rem 0;
 }
@@ -122,9 +121,6 @@
 }
 
 .checkbox{
-    /* position: absolute;
-    left: 9rem;
-    top:27.5rem; */
     width:100%;
     background-color: white;
     color: #0c0c0c;

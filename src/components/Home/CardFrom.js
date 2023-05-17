@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import { CardScaleDetails } from "./CardScaleDetails";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -23,7 +22,7 @@ const CardFrom = ({ handleDetails, f }) => {
       user && isAuthenticated ? history.push(aux) : swal(t("cardFrom.alerta"), t("cardFrom.alerta2"), "error")
       dispatch(resetData())
     }
-    // console.log(i18n)
+    
     const [t, i18n] = useTranslation('global')
 
     return (

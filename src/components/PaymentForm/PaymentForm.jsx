@@ -40,7 +40,7 @@ const CardElementContainer = styled.div`
 
 const PaymentForm = ({ price }) => {
   const { user } = useAuth0();
-  console.log(user);
+
   const history = useHistory();
   const [processing, setProcessing] = useState(false);
   const [checkoutError, setCheckoutError] = useState();
@@ -103,7 +103,7 @@ const PaymentForm = ({ price }) => {
         setProcessing(false);
         return;
       }
-      // await axiosWithOutToken('/passengersInfo', passengersInfo, 'POST')
+
       await swal({
         title: t("paymentForm.gracias"),
         text: t("paymentForm.pro"),
@@ -247,7 +247,6 @@ const PaymentForm = ({ price }) => {
 
           <Row>
             <SubmitButton disabled={processing || !stripe}>
-              {/* {processing ? "Processing..." : `Pay $${price}`} */}
               {processing ? t("paymentForm.p") : t("paymentForm.pago")}
             </SubmitButton>
           </Row>
